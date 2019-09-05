@@ -1,0 +1,11 @@
+package dfsnfs;
+import java.io.*;
+
+public class p2667 {
+	public static void main(String args[]) {
+		Scanner sc = new Scanner(System.in);
+		
+	}
+	
+	
+}
