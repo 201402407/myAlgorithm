@@ -3,9 +3,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
 
+// 이차원 배열은 얕은 복사만 되고 깊은 복사는 되지 않는다.
+// 재귀함수 내 매개변수라고 해도 이차원배열이기 때문에 값이 정적으로 같이 바뀐다.
+// DFS 재귀방식 실패.
 public class p2178 {
 	static final int[] direction = {1, 2, -1, -2};
-	
 	public static void main(String args[]) {
 		Scanner sc = new Scanner(System.in);
 		int n = sc.nextInt();
@@ -44,10 +46,11 @@ public class p2178 {
 	
 	// 최단 경로 탐색
 	public static int explore(int[][] map, int y, int x, int prevDirection) {
-		
 		if(y == map.length - 1 && x == map[0].length - 1) {	// (y, x) == (N, M)인 경우
 			return 1;
 		}
+		if(map[y][x] == 0)
+			return 0;
 		
 		map[y][x] = 0;	// 지나온 길이므로 0으로 세팅해야 무한루프에 빠지지 않음
 		ArrayList<Integer> moveCountList = new ArrayList<>();
@@ -56,10 +59,13 @@ public class p2178 {
 				return 0;
 		}
 		
+		int[][] temp = new int[map.length][map[0].length];
+		arrayCopy(map, temp);
+		
 		for(int i = 0; i < directionList.size(); i++) {
 			int direction = directionList.get(i);
 			int[] nextPos = getMovePosition(y, x, direction);
-			int moveCount = explore(map, nextPos[0], nextPos[1], -direction);	// 오른쪽으로 이동하면 다음 위치에서는 이전방향이 왼쪽이 되므로 반대를 만들기 위해 - 추가.
+			int moveCount = explore(temp, nextPos[0], nextPos[1], -direction);	// 오른쪽으로 이동하면 다음 위치에서는 이전방향이 왼쪽이 되므로 반대를 만들기 위해 - 추가.
 			if(moveCount != 0) {
 				moveCountList.add(moveCount);
 			}
@@ -103,10 +109,10 @@ public class p2178 {
 			if(directionElement == prevDirection)
 				continue;
 			int[] movePos = getMovePosition(y, x, directionElement);
-			if(movePos[0] < 0 || movePos[0] >= map.length) {	// x(n) 범위 체크
+			if(movePos[0] < 0 || movePos[0] >= map.length) {	// y(n) 범위 체크
 				continue;
 			}
-			if(movePos[1] < 0 || movePos[1] >= map[0].length) {	// y(m) 범위 체크
+			if(movePos[1] < 0 || movePos[1] >= map[0].length) {	// x(m) 범위 체크
 				continue;
 			}
 			if(map[movePos[0]][movePos[1]] == 1) {
@@ -114,5 +120,12 @@ public class p2178 {
 			}
 		}
 		return directionList;
+	}
+	
+	// 이차원배열 깊은 복사
+	public static void arrayCopy(int[][] array, int[][] copyArray) {
+		for(int i = 0; i < array.length; i++) {	// 행 별로 복사
+			System.arraycopy(array[i], 0, copyArray[i], 0, array[i].length);
+		}
 	}
 }
