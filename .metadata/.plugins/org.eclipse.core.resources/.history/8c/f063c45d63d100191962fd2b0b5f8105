@@ -1,7 +1,4 @@
 package dfsnfs;
-
-import java.awt.Point;
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -14,6 +11,7 @@ public class q3 {
         int answer = changeWord(begin, target, words);
         return answer;
     }
+    
     private int changeWord(String word, String target, String[] words) {
         if(getIndexOfWord(target, words) == -1) // target 단어가 words 배열 안에 없는 경우 
             return 0;
