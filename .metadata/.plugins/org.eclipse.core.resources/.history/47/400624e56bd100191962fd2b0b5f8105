@@ -1,0 +1,43 @@
+package memoization;
+
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Scanner;
+
+// BFS로 풀어보기
+public class p1463_2 {
+	static int[] count;
+	static boolean[] visited;
+	public static void main(String args[]) {
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		if(n < 1 || n > 1000000) {
+			System.out.println("n의 값이 잘못되었습니다.");
+			System.exit(0);
+		}
+		count = new int[n + 1];
+		visited = new boolean[n + 1];
+		int result = search(n);
+		System.out.println(result);
+	}
+	
+	private static int search(int n) {
+		Queue<Distance> queue = new LinkedList<Distance>();
+		queue.add(new Distance(n, 0));
+		visited[n] = true;
+		
+		while(!queue.isEmpty()) {
+			
+		}
+	}
+	
+	class Distance {
+		int num;
+		int count;
+		
+		Distance(int num, int count) {
+			this.num = num;
+			this.count = count;
+		}
+	}
+}
