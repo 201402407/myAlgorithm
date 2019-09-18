@@ -24,10 +24,14 @@ public class InsertionSort {
 		    for(int i = 0; i < countTokens; i++) {
 			    int number = Integer.parseInt(st.nextToken());
 			    sort[i] = number;
+			    System.out.print(sort[i] + " ");
 		    }
-		    
+		    System.out.println();
 		    insertionSort();
 			
+		    for(int i = 0; i < sort.length; i++) {
+			    System.out.print(sort[i] + " ");
+		    }
 		}
 		catch(NumberFormatException e ) {
 			System.out.println("숫자가 아닌 문자를 입력받았습니다.");
@@ -43,6 +47,17 @@ public class InsertionSort {
 	}
 	
 	private static void insertionSort() {
-		
+		for(int i = 1; i < sort.length; i++) {
+			int temp = sort[i];
+			for(int j = i - 1; j > 0; j--) {
+				int preValue = sort[j];
+				if(preValue <= temp) {
+					break;
+				}
+				// swap
+				sort[j + 1] = preValue;
+				sort[j] = temp;
+			}
+		}
 	}
 }
