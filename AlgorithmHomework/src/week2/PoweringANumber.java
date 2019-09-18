@@ -9,6 +9,7 @@ import java.util.StringTokenizer;
 
 // Powering a Number
 // Divide and Conquer Algorithm 구현
+// memorization 방식 사용
 // a^n 의 값 구하기
 public class PoweringANumber {
 
@@ -29,8 +30,13 @@ public class PoweringANumber {
 				result[count] = 0;
 			}
 			
-	    	int result = getPoweringNumber(a, n);
-	    	System.out.println(result);
+			Thread poweringThread = new Thread(() -> {
+	            long startTime = System.currentTimeMillis();
+	            System.out.format("powering 결과 : %d %n", getPoweringNumber(a, n));
+	            System.out.format("powering 실행 시간 : %d ms%n%n", (System.currentTimeMillis() - startTime));
+	        });
+			
+			poweringThread.start();
 		}
 		catch(NumberFormatException e ) {
 			System.out.println("숫자가 아닌 문자를 입력받았습니다.");
