@@ -47,6 +47,8 @@ public class InsertionSort {
 	}
 	
 	private static void insertionSort() {
+		/*
+		 * 내가 생각해서 한거
 		for(int i = 1; i < sort.length; i++) {
 			int temp = sort[i];
 			for(int j = i - 1; j > 0; j--) {
@@ -58,6 +60,19 @@ public class InsertionSort {
 				sort[j + 1] = preValue;
 				sort[j] = temp;
 			}
+		}
+		*/
+		
+		// 알고리즘 수업 PPT 수도코드
+		int size = sort.length;
+		for(int i = 2; i < size; i++) {
+				int key = sort[i];
+				int j = i - 1;
+				while(j > 0 && sort[j] > key) {
+					sort[j + 1] = sort[j];
+					j--;
+				}
+				sort[j + 1] = key;
 		}
 	}
 }
