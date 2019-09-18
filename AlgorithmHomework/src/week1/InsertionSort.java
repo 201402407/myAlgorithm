@@ -29,8 +29,8 @@ public class InsertionSort {
 		    System.out.println();
 		    insertionSort();
 			
-		    for(int i = 0; i < sort.length; i++) {
-			    System.out.print(sort[i] + " ");
+		    for(int result : sort) {
+			    System.out.print(result + " ");
 		    }
 		}
 		catch(NumberFormatException e ) {
@@ -40,7 +40,8 @@ public class InsertionSort {
 		catch(FileNotFoundException e) {
 			System.out.println("해당 경로에 인풋 파일이 존재하지 않습니다.");
 			System.exit(0);
-		} catch (IOException e) {
+		} 
+		catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
