@@ -9,6 +9,9 @@ import java.util.List;
 import java.util.StringTokenizer;
 
 // 머지소트 구현하기
+// 시간 복잡도
+// Best : nlog_2n,  Average : nlog_2n,  Worst : nlog_2n
+// Conquer : log_2n, Merge : n -> 그래서 nlog_2n 이다.
 public class mergeSort {
 	static List<Integer> sort;
 	

@@ -6,7 +6,9 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.StringTokenizer;
 
-// 삽입정렬 구현하기
+// 삽입 정렬 구현하기
+// 시간 복잡도
+// Best : n,  Average : n^2,  Worst : n^2
 public class InsertionSort {
 	static int sort[];
 	public static void main(String args[]) {
