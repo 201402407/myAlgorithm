@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.math.BigInteger;
+import java.util.NoSuchElementException;
 import java.util.StringTokenizer;
 
 // 피보나치 수열
@@ -17,6 +18,7 @@ public class Fibonacci {
 	private static long startTime;
 	private static boolean[] visited1, visited2, visited3;
 	private static BigInteger[] arrayResult;
+	
 	
 	public static void main(String args[]) {
 		System.out.println("두 개의 값을 입력하세요. (첫 번째 값 : 수행 방법.   두 번째 값 : n)");
@@ -40,7 +42,11 @@ public class Fibonacci {
 		catch (IOException e) {
 			System.out.println("토큰 읽기 오류. IOException");
 			System.exit(0);
-		} 
+		}
+		catch (NoSuchElementException e) {
+			System.out.println("토큰 개수가 부족합니다. NoSuchElementException");
+			System.exit(0);
+		}
     	
 		// 방법 1을 수행하는 쓰레드
 		Thread RecursionThread = new Thread(() -> {
@@ -54,6 +60,12 @@ public class Fibonacci {
             BigInteger result = arrayFibonacci(n);
             System.out.format("Recursion (n = %d) 최종 실행 결과 값 : %d %n", n, result);
         });
+		// 방법 3을 수행하는 쓰레드
+		Thread squaringThread = new Thread(() -> {
+            startTime = System.nanoTime();
+            BigInteger result = squaring(n);
+            System.out.format("Recursion (n = %d) 최종 실행 결과 값 : %d %n", n, result);
+        });
 		
 		switch(method) {
 		case 1:
@@ -61,6 +73,9 @@ public class Fibonacci {
 			break;
 		case 2:
 			ArrayThread.start();
+			break;
+		case 3:
+			squaringThread.start();
 			break;
 			default:
 				System.out.println("방법 선택을 잘못 하셨습니다.");
@@ -111,9 +126,50 @@ public class Fibonacci {
 	}
 	// 세 번째 방법
 	// 행렬 거듭제곱 방법 + Powering a number 방법 사용
-	// Strassen Algorithm(슈트라센 알고리즘) 사용
-	private static BigInteger squaring() {
+	// Strassen Algorithm(슈트라센 알고리즘) 사용 -> 일단 행렬 기본 곱 공식 사용한다.
+	// 컴퓨터는 곱셈 연산이 덧,뺄셈 연산보다 부담이 크다.
+	private static BigInteger squaring(int n) {
+		// n이 1인 경우의 행렬
+		BigInteger[][] fibonacciMatrix = {{BigInteger.ONE, BigInteger.ONE}, 	// [ F_2, F_1 ]		-->		[ F(n+1), F(n)	]
+				 						{BigInteger.ONE, BigInteger.ZERO}}; 	// [ F_1, F_0 ]		-->		[ F(n), F(n-1)	]
+		// TODO : 메일 결과에 따라 슈트라센 알고리즘 사용할 지 안할 지 정한다.
+		if(n == 0)
+			return BigInteger.ZERO;
+		if(n == 1)
+			return BigInteger.ONE;
+		if(n == 2)
+			return matrixMul(fibonacciMatrix, fibonacciMatrix)[0][1];	// 이 위치는 F_1을 가리킴
 		
+		return pow(fibonacciMatrix, n)[0][1];	// F(n) 리턴
+	}
+	
+	// 거듭제곱 곱하기
+	private static BigInteger[][] pow(BigInteger[][] A, int n) {
+		if(n == 1)
+			return A;
+		if(n % 2 == 0) {	// n이 짝수인 경우
+			return matrixMul(pow(A, n / 2), pow(A, n / 2));
+		}
+		if(n % 2 == 1)	{	// n이 홀수인 경우
+			return matrixMul(A, matrixMul(pow(A, (n - 1) / 2), pow(A, (n - 1) / 2)));
+		}
+		return A;
+	}
+	
+	// 기본적인 행렬 곱.
+	// 시간복잡도 : n^3(for문 3번)
+	private static BigInteger[][] matrixMul(BigInteger[][] A, BigInteger[][] B) {
+		int n = A.length;
+		BigInteger[][] result = new BigInteger[n][n];
+		for(int i = 0; i < n; i++) {
+			for(int j = 0; j < n; j++) {
+				result[i][j] = BigInteger.ZERO;
+				for(int k = 0; k < n; k++) {
+					result[i][j] =  result[i][j].add(A[i][k].multiply(B[k][j]));
+				}
+			}
+		}
+		return result;
 	}
 	
 	/*
