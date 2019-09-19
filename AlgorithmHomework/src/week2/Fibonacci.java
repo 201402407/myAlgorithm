@@ -145,15 +145,25 @@ public class Fibonacci {
 	
 	// 거듭제곱 곱하기
 	private static BigInteger[][] pow(BigInteger[][] A, int n) {
-		if(n == 1)
+		if(n == 1) {
+			if(!visited3[n]) {	// 최초 방문했으면
+				printCurrentProgressTime(n, A[0][1]);	// 실행 시간 표시
+			}
 			return A;
+		}
+		
+		BigInteger[][] result = null;
 		if(n % 2 == 0) {	// n이 짝수인 경우
-			return matrixMul(pow(A, n / 2), pow(A, n / 2));
+			result = matrixMul(pow(A, n / 2), pow(A, n / 2));
 		}
 		if(n % 2 == 1)	{	// n이 홀수인 경우
-			return matrixMul(A, matrixMul(pow(A, (n - 1) / 2), pow(A, (n - 1) / 2)));
+			result = matrixMul(A, matrixMul(pow(A, (n - 1) / 2), pow(A, (n - 1) / 2)));
 		}
-		return A;
+		
+		if(!visited3[n]) {	// 최초 방문했으면
+			printCurrentProgressTime(n, result[0][1]);	// 실행 시간 표시
+		}
+		return result;
 	}
 	
 	// 기본적인 행렬 곱.
