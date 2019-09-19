@@ -1,8 +1,10 @@
 // 201402407 이해원
 package week1;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.StringTokenizer;
 
@@ -13,12 +15,14 @@ public class InsertionSort {
 	static int sort[];
 	public static void main(String args[]) {
 		try { 
-			String inputFileSrc = new java.io.File("").getAbsolutePath() + "/src/input.txt";	// 상대 경로 설정
+			String fileSrc = new java.io.File("").getAbsolutePath();
+			String inputFileSrc =  fileSrc + "/src/data02.txt";	// 상대 경로 설정
+			String outputFileSrc =  fileSrc + "/src/hw01_05_201402407_insertion.txt";	// 상대 경로 설정
 			FileInputStream fileInputStream = new FileInputStream(inputFileSrc);
 			
 			byte[] buffer = new byte[fileInputStream.available()];	// 파일의 전체 크기만큼 바이트 버퍼 설정
 			while(fileInputStream.read(buffer) != -1) {}	// 버퍼에 값 저장
-			StringTokenizer st = new StringTokenizer(new String(buffer)); // 토큰으로 숫자 분리
+			StringTokenizer st = new StringTokenizer(new String(buffer), ","); // 토큰으로 숫자 분리
 	    	
 			int countTokens = st.countTokens();	// 갯수 넣기
 	    	sort = new int[countTokens];
@@ -26,14 +30,27 @@ public class InsertionSort {
 		    for(int i = 0; i < countTokens; i++) {
 			    int number = Integer.parseInt(st.nextToken());
 			    sort[i] = number;
-			    System.out.print(sort[i] + " ");
 		    }
-		    System.out.println();
 		    insertionSort();
 			
+		    // 파일에 쓰기 위한 변수 생성
+		    File outputFile = new File(outputFileSrc);
+		    FileWriter writer = new FileWriter(outputFile, false);
+		    
+		    int count = 0;
 		    for(int result : sort) {
-			    System.out.print(result + " ");
+		    	count++;
+		    	String elementStr = String.valueOf(result);
+		    	if(count == sort.length) {
+		    		writer.write(elementStr);
+		    		break;
+		    	}
+		    	writer.write(elementStr + ",");
 		    }
+	    	
+	    	writer.flush();
+			fileInputStream.close();
+			writer.close();
 		}
 		catch(NumberFormatException e ) {
 			System.out.println("숫자가 아닌 문자를 입력받았습니다.");
@@ -44,8 +61,8 @@ public class InsertionSort {
 			System.exit(0);
 		} 
 		catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("파일 저장 중 오류 발생.");
+			System.exit(0);
 		}
 	}
 	
