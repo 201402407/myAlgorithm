@@ -11,6 +11,7 @@ import java.util.StringTokenizer;
 // Divide and Conquer Algorithm 구현
 // memorization 방식 사용
 // a^n 의 값 구하기
+// ㅋㅋ
 public class PoweringANumber {
 
 	static int result[];
