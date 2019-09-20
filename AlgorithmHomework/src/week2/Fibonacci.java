@@ -8,7 +8,7 @@ import java.util.NoSuchElementException;
 import java.util.StringTokenizer;
 
 // 피보나치 수열
-// recursive, Bottom-up, recursive squaring 방식으로 구현
+// recursive, Bottom-up(Array, Memorization), recursive squaring 방식으로 구현
 // 실행 시간도 같이 출력
 // 출력 결과 작성 시 n은 90으로 설정하고 진행
 // BigInteger : 무한 대의 정수 사용 가능
@@ -30,7 +30,7 @@ public class Fibonacci {
 			st = new StringTokenizer(br.readLine());
 			method = Integer.parseInt(st.nextToken()); // 알고리즘 방법 선택
 			n = Integer.parseInt(st.nextToken());	// 해당 번째 숫자 출력
-			visited1 = new boolean[n + 1];
+			visited1 = new boolean[n + 1];	// 실행 시간을 측정하기ㅣ 위한 방문 여부 배열
 			visited2 = new boolean[n + 1];
 			visited3 = new boolean[n + 1];
 			arrayResult = new BigInteger[n + 1];
@@ -178,6 +178,7 @@ public class Fibonacci {
 					result[i][j] =  result[i][j].add(A[i][k].multiply(B[k][j]));
 				}
 			}
+			
 		}
 		return result;
 	}
@@ -187,19 +188,25 @@ public class Fibonacci {
 	 * 전제 조건 : n은 방문한 적이 없는 경우
 	 */
 	private static void printCurrentProgressTime(int n, BigInteger result) {
+		if(n % 10 == 0)
+			System.out.println("------------------------------------------------------------------------------");
 		switch(method) {
 		case 1:
 			visited1[n] = true;
+			System.out.format("Recursion f[%d] = %d\t\t\t\t\t\t\t실행 시간 : %f sec%n", n, result, (System.nanoTime() - startTime) / 1000000000.0);
 			break;
 		case 2:
 			visited2[n] = true;
+			System.out.format("Array f[%d] = %d\t\t\t\t\t\t\t실행 시간 : %f sec%n", n, result, (System.nanoTime() - startTime) / 1000000000.0);
 			break;
 		case 3:
 			visited3[n] = true;
+			System.out.format("Recursive Squaring f[%d] = %d\t\t\t\t\t\t\t실행 시간 : %f sec%n", n, result, (System.nanoTime() - startTime) / 1000000000.0);
 			break;
 			default:
 				break;
 		}
-		System.out.format("Recursion f[%d] = %d \t\t\t\t\t\t 실행 시간 : %f sec%n", n, result, (System.nanoTime() - startTime) / 1000000000.0);
+		
+		
 	}
 }
