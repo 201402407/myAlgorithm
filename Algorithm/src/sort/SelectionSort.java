@@ -69,7 +69,7 @@ public class SelectionSort {
 	
 	private static void selectionSort() {
 		int n = sort.length;
-		for(int i = 0; i < n; i++) {
+		for(int i = 0; i < n - 1; i++) {
 			int key = sort[i];
 			int changeIndex = i;
 			for(int j = i + 1; j < n; j++) {
