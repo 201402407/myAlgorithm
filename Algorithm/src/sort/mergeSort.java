@@ -1,5 +1,5 @@
 // 201402407 ÀÌÇØ¿ø
-package week1;
+package sort;
 
 import java.io.File;
 import java.io.FileInputStream;
