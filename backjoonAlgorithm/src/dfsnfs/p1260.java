@@ -1,7 +1,11 @@
 package dfsnfs;
 
-import java.io.*;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Scanner;
 
 public class p1260 {
 	public static void main(String args[]) {
@@ -9,29 +13,7 @@ public class p1260 {
 		int n = scan.nextInt();
 		int m = scan.nextInt();
 		int v = scan.nextInt();
-		/*
-		 * 버퍼 리더 사용 법 
-		 BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		    BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-		    StringTokenizer st = new StringTokenizer(br.readLine());
-		    
-		    int N = Integer.parseInt(st.nextToken());
-		    int M = Integer.parseInt(st.nextToken());
-		    V = Integer.parseInt(st.nextToken());
 		
-		    for (int i = 0; i <= N; i++) {
-		      list[i] = new ArrayList<Integer>();
-		    }
-		    
-		    for (int i = 0; i < M; i++) {
-		      st = new StringTokenizer(br.readLine());
-		      int a = Integer.parseInt(st.nextToken());
-		      int b = Integer.parseInt(st.nextToken());
-		      list[a].add(b);
-		      list[b].add(a);
-		    
-		    }
-		 */
 		ArrayList<Integer>[] arrayList = (ArrayList<Integer>[]) new ArrayList[n + 1]; // 1부터 그래프가 시작하므로 1 추가
 		for(int i = 0; i <= n; i++) {
 			arrayList[i] = new ArrayList<>();
