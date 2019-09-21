@@ -1,4 +1,4 @@
-package memoization;
+package dynamic;
 
 import java.io.BufferedReader;
 import java.io.IOException;

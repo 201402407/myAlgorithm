@@ -1,4 +1,4 @@
-package memoization;
+package dynamic;
 
 import java.util.Scanner;
 import java.util.ArrayList;
