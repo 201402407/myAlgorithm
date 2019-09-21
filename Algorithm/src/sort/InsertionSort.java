@@ -118,7 +118,7 @@ public class InsertionSort {
 		for(int i = 1; i < size; i++) {
 				int key = sort[i];
 				int j = i - 1;
-				while(j > 0 && sort[j] > key) {
+				while(j >= 0 && sort[j] > key) {
 					sort[j + 1] = sort[j];
 					j--;
 				}

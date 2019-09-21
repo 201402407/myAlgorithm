@@ -86,10 +86,10 @@ public class InsertionSort {
 		
 		// 알고리즘 수업 PPT 수도코드
 		int size = sort.length;
-		for(int i = 2; i < size; i++) {
+		for(int i = 1; i < size; i++) {
 				int key = sort[i];
 				int j = i - 1;
-				while(j > 0 && sort[j] > key) {
+				while(j >= 0 && sort[j] > key) {
 					sort[j + 1] = sort[j];
 					j--;
 				}
