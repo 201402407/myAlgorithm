@@ -1,6 +1,5 @@
 package dfsnfs;
 
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
@@ -84,4 +83,8 @@ public class p2178_2 {
 		return map[n - 1][m - 1];
 		
 	}
+}
+
+class Temp {
+	
 }
