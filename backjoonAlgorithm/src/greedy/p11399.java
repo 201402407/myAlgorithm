@@ -14,6 +14,7 @@ public class p11399 {
 	public static void main(String args[]) {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = null;
+		// 
 	    try {
 			st = new StringTokenizer(br.readLine());
 			int n = Integer.valueOf(st.nextToken());
