@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.StringTokenizer;
 
 // Counting Inversions
+// long »ç¿ëÇÔ
 public class p10090 {
 	public static void main(String args[]) {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
