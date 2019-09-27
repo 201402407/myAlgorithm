@@ -18,7 +18,6 @@ public class p1157 {
 			}
 			count[i]++;
 		}
-		
 		boolean multiValue = false;
 		int max = count[65];
 		int index = 65;

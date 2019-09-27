@@ -1,11 +1,11 @@
 package sort;
 
-import java.util.List;
-import java.util.StringTokenizer;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.StringTokenizer;
 
 public class p10814 {
 	static List<Member> sort = new ArrayList<Member>();
@@ -25,7 +25,6 @@ public class p10814 {
 				Member member = new Member(age, name);
 				binaryInsertionSort(member);
 			}
-			
 			sort.stream().forEach(member -> member.print());
 		} 
 	    catch (NumberFormatException e) {

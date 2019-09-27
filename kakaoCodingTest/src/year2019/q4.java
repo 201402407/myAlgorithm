@@ -1,4 +1,5 @@
 package year2019;
+import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -17,7 +18,7 @@ class q4 {
             System.exit(0);
         }
         answer = new int[queriesLength];
-        
+        Arrays.sort(answer, new Comparator<>);
         for(int i = 0; i < queriesLength; i++) {
             String element = queries[i];
             if(element.length() < 1 || element.length() > 10000) {
