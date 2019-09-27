@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.StringTokenizer;
 
 // counting Inversions
+// Merge and conquer 방식 사용
+// ArrayList 사용
 public class countingInversions {
 	public static void main(String args[]) {
 		String fileSrc = new java.io.File("").getAbsolutePath();
