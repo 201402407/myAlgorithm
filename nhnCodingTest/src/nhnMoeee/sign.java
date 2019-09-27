@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
+// 전광판 광고
 public class sign {
 	static String[][] sign;
 	static boolean changedSign[][];
@@ -77,8 +78,8 @@ public class sign {
 			
 			// 이동 시작
 			for(int i = 0; i < 4 * rotateSignLength; i++) {
-				int nowDirection = i / rotateSignLength;
-				int nowMoveStep = i % rotateSignLength;
+				int nowDirection = i / rotateSignLength;	// 시작 점
+				int nowMoveStep = i % rotateSignLength;		// 이동 거리
 				
 				int nextRotationStep = ((realRotationStep + i) % (4 * rotateSignLength)); // 시작점 기준 해당하는 점에서 이동 해야하는 총 거리
 				int nextDirection = nextRotationStep / rotateSignLength;
@@ -89,10 +90,12 @@ public class sign {
 				tempStr[nextRotationStep] = sign[nextPoint.getY()][nextPoint.getX()];
 
 				if(tempStr[i] == null) {	// String null 체크
-					tempStr[i] = sign[nowPoint.getY()][nowPoint.getX()];
+					tempStr[i] = sign[nowPoint.getY()][nowPoint.getX()];	// 바뀌기 전 문자를 저장
 				}
-				sign[nextPoint.getY()][nextPoint.getX()] = tempStr[i];
+				sign[nextPoint.getY()][nextPoint.getX()] = tempStr[i];	// 바뀌기 전 문자를 새로 덮어씌우기
 			}
+			
+			// 꼭짓점 초기화(다음 안쪽 사각형으로 이동)
 			startA = new Point(startA.getX() + 1, startA.getY() + 1);
 			startB = new Point(startB.getX() - 1, startB.getY() + 1);
 			startC = new Point(startC.getX() + 1, startC.getY() - 1);
