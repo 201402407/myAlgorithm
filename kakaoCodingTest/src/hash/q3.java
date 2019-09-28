@@ -16,6 +16,7 @@ public class q3 {
                 map.put(type, 1);
             }
         }
+
         int mapSize = map.size();    
         int answer = 1;
         for(String element : map.keySet()) {    // (A + 1)(B + 1) ม๘วเม฿
