@@ -1,9 +1,10 @@
 package year2019;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-class q4 {
+public class q4 {
     static int[] answer;
     public int[] solution(String[] words, String[] queries) {
         int wordsLength = words.length;
@@ -18,7 +19,7 @@ class q4 {
             System.exit(0);
         }
         answer = new int[queriesLength];
-        Arrays.sort(answer, new Comparator<>);
+       
         for(int i = 0; i < queriesLength; i++) {
             String element = queries[i];
             if(element.length() < 1 || element.length() > 10000) {
@@ -31,6 +32,11 @@ class q4 {
     }
     
     private int search(String[] words, String element) {
+    	 Arrays.sort(words, new Comparator<String>() {
+    		 public int compare(String s1, String s2) {
+                 return Integer.compare(s1.length(), s2.length());
+             }
+         });
         int count = 0;
         element = element.replace("?", ".");
         String patternStr = "^" + element + "$";
