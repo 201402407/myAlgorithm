@@ -4,6 +4,9 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
+// 다리를 지나는 트럭
+// 큐(링크드리스트) -> 삽입, 삭제는 빠르고 대신에 정렬, 탐색은 느리다. peek나 poll 활용하자.
+// 어레이리스트 -> 삽입, 삭제는 느리고 대신에 정렬, 탐색은 빠르다. 내 생각에 인덱싱으로 처음 넣을때는 빠르지만 get으로 꺼내거나 remove는 느리다
 public class q3 {
     static Queue<Integer> wait = new LinkedList<Integer>();
     static Queue<Truck> move = new LinkedList<Truck>();
