@@ -2,6 +2,7 @@ package hash;
 
 import java.util.HashMap;
 
+// 의상 문제
 // A, B, C 3개의 조합인 경우 -> A + B + C + AB + AC + BC + ABC = (A + 1)(B + 1)(C + 1) - 1이다.
 public class q3 {
     static HashMap<String, Integer> map = new HashMap<String, Integer>();

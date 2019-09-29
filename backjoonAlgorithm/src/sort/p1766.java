@@ -5,12 +5,14 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.Queue;
 import java.util.StringTokenizer;
 
 // 문제집
 // 위상정렬 -> DAG 그래프 특성이어야 함. DAG : 순서가 있고 사이클(순환)이 존재하지 않음. 즉, 시작과 끝이 명확히 존재해야 함
 public class p1766 {
 	static LinkedList<Integer> graph[];
+	static Queue<Integer> que = new LinkedList<Integer>();
 	static int indegree[]; // 진입차수 배열
 	public static void main(String args[]) {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -31,7 +33,6 @@ public class p1766 {
 			for(int i = 1; i <= n; i++) {
 				graph[i] = new LinkedList<Integer>();
 			}
-			
 			// 입력받은 순서쌍 집어넣기
 			for(int j = 0; j < m; j++) {
 				st = new StringTokenizer(br.readLine());
