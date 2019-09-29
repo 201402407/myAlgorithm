@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
 // 쉬운 계단 수
+// 오버플로우 조심. 
 public class p10844 {
 	static long[] answer = new long[10];
 	static long remain = 1000000000;
