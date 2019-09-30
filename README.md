@@ -1,3 +1,3 @@
 # myAlgorithm
-## baekjoon, kakao
+## baekjoon, programmer, algorithm class homework
 ## leehaewon
