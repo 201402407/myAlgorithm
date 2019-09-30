@@ -21,6 +21,7 @@ public class p1463_2 {
 		visited = new boolean[n + 1];
 		int result = search(n);
 		System.out.println(result);
+		
 	}
 	
 	private static int search(int n) {
