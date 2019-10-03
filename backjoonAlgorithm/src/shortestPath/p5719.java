@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 import java.util.PriorityQueue;
 import java.util.StringTokenizer;
@@ -14,6 +15,7 @@ public class p5719 {
 	static StringBuilder sb = new StringBuilder();
 	static List<Vertex>[] graph;
 	static int[] distance;
+	static int resultDistance;
 	public static void main(String args[]) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		String str;
@@ -52,51 +54,95 @@ public class p5719 {
 	// 2. 경로를 맨 끝 원소부터 제거하면서 재귀호출로 다익스트라 알고리즘을 사용, 최단 경로와 다르면 그냥 리턴하기
 	// 3. 최단 경로 리턴
 	private static void find(int startPoint, int endPoint, int n) {
+		resultDistance = Integer.MAX_VALUE;
 		int[] result = dijkstra(startPoint, endPoint, n, Integer.MAX_VALUE);	// endPoint까지의 최단 경로 추출. 첫 함수 실행이라 최대값 임의로 대입
-		if(deletePath(startPoint, endPoint, result, distance[endPoint])) {
-			if(distance[endPoint] == Integer.MAX_VALUE) {
-				sb.append(-1).append("\n");
-			}
-			else {
-				sb.append(distance[endPoint]).append("\n");	
-			}	
+		if(result[endPoint] == -1) {	// 최소 경로가 존재하지 않음
+			sb.append(-1).append("\n");
 		}
-		else {
-			if(distance[endPoint] == Integer.MAX_VALUE) {
+		else {	// 최소 경로가 존재함
+			int minDistance = distance[endPoint]; // 최소 경로 설정
+			deletePath(startPoint, endPoint, result, minDistance);
+			if(resultDistance == Integer.MAX_VALUE) {
 				sb.append(-1).append("\n");
 			}
 			else {
-				sb.append(distance[endPoint]).append("\n");	
+				sb.append(resultDistance).append("\n");	
 			}
+//			if(deletePath(startPoint, endPoint, result, minDistance)) {
+//				if(distance[endPoint] == Integer.MAX_VALUE) {
+//					sb.append(-1).append("\n");
+//				}
+//				else {
+//					sb.append(distance[endPoint]).append("\n");	
+//				}	
+//			}
+//			else {
+//				if(distance[endPoint] == Integer.MAX_VALUE) {
+//					sb.append(-1).append("\n");
+//				}
+//				else {
+//					sb.append(distance[endPoint]).append("\n");	
+//				}
+//			}	
 		}
 	}
 	
 	// 경로 삭제 -> 삭제함 : true. 삭제 못함 : false
 	private static boolean deletePath(int startPoint, int endPoint, int[] result, int minDistance) {
 		// 경로 삭제
-		int endVertex = endPoint;
-		while(endVertex != startPoint) {
-			int startVertex = result[endVertex];
+		int endVertex = endPoint;	// 도착점부터 역으로 탐색
+		while(endVertex != startPoint) {	// 도착점이 시작점까지 오면 종료
+			int startVertex = result[endVertex];	// 도착점 이전 노드를 시작점으로 설정
 			if(startVertex == -1) {
 				return false;	
 			}
 			boolean isValid = false; // 그래프 내에 이어지는 Vertex가 존재하는 지 체크
-			for(Vertex v : graph[startVertex]) {
-				if(v.getVertex() == endVertex) {
-					graph[startVertex].remove(v);
-					int[] temp = dijkstra(startPoint, endPoint, result.length, minDistance);
-					if(temp != null) { // 다른 최단 거리가 또 있는 경우
-						deletePath(startPoint, endPoint, temp, minDistance);
-						return false;
-					}
-					else {
-						endVertex = startVertex;
-						isValid = true;
-						break;
-					}
-					
-				}
+			Iterator<Vertex> iter = graph[startVertex].iterator();
+			final int tempVertex = endVertex;	// removeIf를 위한 임시 final 변수
+			graph[startVertex].removeIf(v -> (v.getVertex() == tempVertex));	// 삭제
+			int[] temp = dijkstra(startPoint, endPoint, result.length, minDistance); // 다시 탐색
+			if(temp != null) { // 다른 최단 거리가 또 있는 경우
+				deletePath(startPoint, endPoint, temp, minDistance);
 			}
+//			else {
+//			}
+			endVertex = startVertex;
+//			while(iter.hasNext()) {
+//				Vertex v = iter.next();
+//				if(v.getVertex() == endVertex) {
+//					graph[startVertex].remove(v);
+//					int[] temp = dijkstra(startPoint, endPoint, result.length, minDistance);
+//					if(temp != null) { // 다른 최단 거리가 또 있는 경우
+//						deletePath(startPoint, endPoint, temp, minDistance);
+//						return false;
+//					}
+//					else { // 거의 최단 거리를 구한 경우
+//						return true;
+//					}
+////					else {
+////						endVertex = startVertex;
+////						isValid = true;
+////						break;
+////					}	
+//				}
+//			}
+			
+//			for(Vertex v : graph[startVertex]) {
+//				if(v.getVertex() == endVertex) {
+//					graph[startVertex].remove(v);
+//					int[] temp = dijkstra(startPoint, endPoint, result.length, minDistance);
+//					if(temp != null) { // 다른 최단 거리가 또 있는 경우
+//						deletePath(startPoint, endPoint, temp, minDistance);
+//						break;
+//					}
+////					else {
+////						endVertex = startVertex;
+////						isValid = true;
+////						break;
+////					}	
+//				}
+//			}
+//			endVertex = startVertex;
 		}
 		return true;
 	}
@@ -114,9 +160,6 @@ public class p5719 {
 		while(!queue.isEmpty()) { 
 			Vertex startVertex = queue.poll();
 			startPoint = startVertex.getVertex();
-			if(startPoint == endPoint) {
-				break;
-			}
 			if(visited[startPoint])
 				continue;
 			visited[startPoint] = true;
@@ -126,13 +169,12 @@ public class p5719 {
 				if(distance[endVertex] > distance[startPoint] + vertex.getWeight()) {
 					distance[endVertex] = distance[startPoint] + vertex.getWeight();
 					queue.offer(new Vertex(endVertex, distance[endVertex]));
-//					System.out.println("startVertex : " + startPoint + ", endVertex : " + endVertex);
 					result[endVertex] = startPoint;	// 해당 경로의 마지막 출력
-//					System.out.println(distance[endVertex]);
 				}
 			}
 		}
-		if(minDistance < distance[endPoint]) { // 거의 최단 경로인 경우 널 리턴
+		if(minDistance < distance[endPoint]) { // 거의 최단 경로인 경우 가장 작은 수로 결과값을 설정하고 널 리턴
+			resultDistance = distance[endPoint];
 			return null;
 		}
 		return result;
