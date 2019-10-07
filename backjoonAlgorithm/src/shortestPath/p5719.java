@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Iterator;
 import java.util.List;
 import java.util.PriorityQueue;
 import java.util.StringTokenizer;
@@ -68,22 +67,6 @@ public class p5719 {
 			else {
 				sb.append(resultDistance).append("\n");	
 			}
-//			if(deletePath(startPoint, endPoint, result, minDistance)) {
-//				if(distance[endPoint] == Integer.MAX_VALUE) {
-//					sb.append(-1).append("\n");
-//				}
-//				else {
-//					sb.append(distance[endPoint]).append("\n");	
-//				}	
-//			}
-//			else {
-//				if(distance[endPoint] == Integer.MAX_VALUE) {
-//					sb.append(-1).append("\n");
-//				}
-//				else {
-//					sb.append(distance[endPoint]).append("\n");	
-//				}
-//			}	
 		}
 	}
 	
@@ -97,7 +80,6 @@ public class p5719 {
 				return false;	
 			}
 			boolean isValid = false; // 그래프 내에 이어지는 Vertex가 존재하는 지 체크
-			Iterator<Vertex> iter = graph[startVertex].iterator();
 			final int tempVertex = endVertex;	// removeIf를 위한 임시 final 변수
 			graph[startVertex].removeIf(v -> (v.getVertex() == tempVertex));	// 삭제
 			int[] temp = dijkstra(startPoint, endPoint, result.length, minDistance); // 다시 탐색
@@ -107,47 +89,11 @@ public class p5719 {
 //			else {
 //			}
 			endVertex = startVertex;
-//			while(iter.hasNext()) {
-//				Vertex v = iter.next();
-//				if(v.getVertex() == endVertex) {
-//					graph[startVertex].remove(v);
-//					int[] temp = dijkstra(startPoint, endPoint, result.length, minDistance);
-//					if(temp != null) { // 다른 최단 거리가 또 있는 경우
-//						deletePath(startPoint, endPoint, temp, minDistance);
-//						return false;
-//					}
-//					else { // 거의 최단 거리를 구한 경우
-//						return true;
-//					}
-////					else {
-////						endVertex = startVertex;
-////						isValid = true;
-////						break;
-////					}	
-//				}
-//			}
-			
-//			for(Vertex v : graph[startVertex]) {
-//				if(v.getVertex() == endVertex) {
-//					graph[startVertex].remove(v);
-//					int[] temp = dijkstra(startPoint, endPoint, result.length, minDistance);
-//					if(temp != null) { // 다른 최단 거리가 또 있는 경우
-//						deletePath(startPoint, endPoint, temp, minDistance);
-//						break;
-//					}
-////					else {
-////						endVertex = startVertex;
-////						isValid = true;
-////						break;
-////					}	
-//				}
-//			}
-//			endVertex = startVertex;
 		}
 		return true;
 	}
 	
-	// 처음에 싹 돌려서 나온 최단 경로를 
+	// 최단 경로를 모두 찾아내서 한번에 삭제해야 하는대..
 	private static int[] dijkstra(int startPoint, int endPoint, int n, int minDistance) {
 		PriorityQueue<Vertex> queue = new PriorityQueue<>();	// comparable로 객체 우선순위 바꿈
 		int[] result = new int[n];	// 최단 경로
