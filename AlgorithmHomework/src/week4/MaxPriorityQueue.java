@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Scanner;
 import java.util.StringTokenizer;
 
 // Max Heap과 우선순위 큐로 구현한 클래스
@@ -27,23 +28,92 @@ public class MaxPriorityQueue {
 				int key = Integer.valueOf(st.nextToken());
 				String subjectName = st.nextToken();
 				heap.push(new Subject(key, subjectName));
-				sb.append(key).append(" , ").append(subjectName).append(" , ").append(i++).append("\n");
 			}
-			System.out.println(sb.toString());
-			buildMaxHeap(heap);
-			System.out.println("---------------------------------------------------");
-			for(Subject s : heap.getList()) {
-				if(s == null)
-					continue;
-				System.out.println(s.getKey() + ", " + s.getName());
-			}
-//			heap.getList().stream().forEach(s -> System.out.println(s.getKey() + " , " + s.getName()));
-			
+			buildMaxHeap(heap);	// Max heap 정렬
+			System.out.println();
+			menu(heap);
 		} catch (FileNotFoundException e) {
 			System.exit(0);
 		} catch (IOException e) {
 			System.exit(0);
 		}
+	}
+	
+	// 메뉴 출력
+	public static void menu(Heap heap) {
+		Scanner sc = new Scanner(System.in);
+		while(true) {
+			print(heap);
+			System.out.println("--------------------------------------------------------");
+			System.out.println("1 : 작업 추가 \t 2 : 최대값 \t 3 : 최대 우선순위 작업 처리");
+			System.out.println("4 : 원소 키값 증가 \t 5 : 작업 제거 \t 6 : 종료");
+			System.out.println("--------------------------------------------------------");
+			String star = sc.next();
+			int result = Integer.valueOf(star);
+//			int result = sc.nextInt();
+			
+			switch(result) {
+			case 1:
+				System.out.println("키를 입력하세요.");
+				int key = sc.nextInt();
+				System.out.println("과목 이름을 입력하세요.");
+				String name = sc.next();
+				insert(heap, new Subject(key, name));
+				break;
+			case 2:
+				StringBuilder sb = new StringBuilder();
+				Subject s = max(heap);
+				sb.append("최댓값 키 : ").append(s.getKey()).append(", 과목 이름 : ").append(s.getName());
+				System.out.println(sb.toString());
+				break;
+			case 3:
+				s = extract_max(heap);
+				if(s != null) {
+					System.out.println("최대 우선순위 작업 처리 완료.");	
+				}
+				else
+					System.out.println("최대 우선순위 작업 처리 실패.");
+				break;
+			case 4:
+				System.out.println("바꿀 원소의 키 값을 입력하세요.");
+				key = sc.nextInt();
+				System.out.println("바꿀 원소의 과목 이름을 입력하세요.");
+				name = sc.next();
+				System.out.println("변경할 키 값을 입력하세요.");
+				int changeKey = sc.nextInt();
+				if(increase_key(heap, new Subject(key, name), changeKey))
+					System.out.println("원소 키값 증가 완료");
+				else
+					System.out.println("원소 키값 증가 실패");
+				break;
+			case 5:
+				System.out.println("제거 할 원소의 키 값을 입력하세요.");
+				key = sc.nextInt();
+				System.out.println("제거 할 원소의 과목 이름을 입력하세요.");
+				name = sc.next();
+				if(delete(heap, new Subject(key, name)))
+					System.out.println("작업 제거 완료");
+				else
+					System.out.println("작업 제거 실패");
+				break;
+			case 6:
+				System.out.println("종료합니다.");
+				System.exit(0);
+				break;
+			}
+			System.out.println();
+		}
+	}
+	
+	// 현재 큐에 있는 노드 출력
+	public static void print(Heap heap) {
+		StringBuilder sb = new StringBuilder();
+		System.out.println("------ 현재 우선 순위 큐에 저장되어 있는 작업 대기 목록은 다음과 같습니다. ------ \n");
+		for(int i = 1; i <= heap.size(); i++) {
+			Subject s = heap.get(i);
+			sb.append(s.getKey()).append(", ").append(s.getName()).append(" (index : " + i + ")").append("\n");
+		}
+		System.out.println(sb.toString());
 	}
 	
 	public static void buildMaxHeap(Heap heap) {
@@ -60,7 +130,7 @@ public class MaxPriorityQueue {
 		if(left <= heap.size() && heap.get(left).getKey() > heap.get(parent).getKey()) {
 			parent = left;
 		}
-		if(right <= heap.size() && heap.get(right).getKey() > heap.get(i).getKey()) {
+		if(right <= heap.size() && heap.get(right).getKey() > heap.get(parent).getKey()) {
 			parent = right;
 		}
 		if(parent != i) {
@@ -73,12 +143,13 @@ public class MaxPriorityQueue {
 	public static void insert(Heap heap, Subject s) {
 		heap.push(s);
 		int length = heap.size();
-		for(int parent = length / 2; parent <= 1; parent = parent / 2) {
+		for(int parent = length / 2; parent >= 1; parent = parent / 2) {
 			if(heap.get(length).getKey() < heap.get(parent).getKey()) {
 				break;
 			}
 			else {
 				Collections.swap(heap.getList(), length, parent);
+				length = parent;
 			}
 		}
 	}
@@ -93,8 +164,11 @@ public class MaxPriorityQueue {
 	// 키 값이 최대인 원소 제거
 	public static Subject extract_max(Heap heap) {
 		int length = heap.size();
+		if(length < 1)
+			return null;
 		Collections.swap(heap.getList(), length, 1);
 		Subject result = heap.remove(length);
+		
 		maxHeapify(heap, 1);
 		return result;
 	}
@@ -111,7 +185,8 @@ public class MaxPriorityQueue {
 			if((heap.get(i).getKey() == prevKey) && (heap.get(i).getName().equals(name))) {
 				s.setKey(key);
 				heap.getList().set(i, s);	// 덮어쓰기
-				maxHeapify(heap, i);
+//				maxHeapify(heap, i);
+				buildMaxHeap(heap);
 				return true;
 			}
 		}
@@ -123,7 +198,7 @@ public class MaxPriorityQueue {
 		int key = s.getKey();
 		String name = s.getName();
 		int length = heap.size();
-		for(int i = 1; i < length; i++) {
+		for(int i = 1; i <= length; i++) {
 			if((heap.get(i).getKey() == key) && (heap.get(i).getName().equals(name))) {
 				Collections.swap(heap.getList(), length, i);
 				heap.remove(length);
@@ -163,7 +238,7 @@ class Heap {
 	}
 	
 	public boolean isEmpty() {
-		return this.index == 0 ? false : true;
+		return this.index == 0 ? true : false;
 	}
 	
 	public int size() {	// 한 개면 1, 두 개면 2 리턴
