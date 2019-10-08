@@ -24,7 +24,7 @@ public class MaxPriorityQueue {
 			int i = 1;
 			Heap heap = new Heap();	// 赛 按眉 积己
 			while((str = br.readLine()) != null) {
-				st = new StringTokenizer(str, ", ");
+				st = new StringTokenizer(str, ",");
 				int key = Integer.valueOf(st.nextToken());
 				String subjectName = st.nextToken();
 				heap.push(new Subject(key, subjectName));
