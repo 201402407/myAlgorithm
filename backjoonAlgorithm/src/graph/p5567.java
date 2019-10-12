@@ -55,6 +55,7 @@ public class p5567 {
 			if(friend.getCount() >= 2) {	// 模备狼 模备狼 模备何磐绰 救登骨肺 钠
 				continue;
 			}
+			// zz
 			
 			for(int element : map[friend.getNumber()]) {
 				if(!visited[element]) {	// 模备狼 模备何磐绰 救等促.
