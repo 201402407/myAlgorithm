@@ -80,9 +80,9 @@ public class QuickSort {
 			int mid = partition(list, start, end);
 			quickSort(list, start, mid - 1);
 			quickSort(list, mid + 1, end);
+		
 		}
 	}
-	
 	private static int partition(List<Integer> list, int start, int end) {
 		int pivot = list.get(end);
 		int startIndex = start - 1;
