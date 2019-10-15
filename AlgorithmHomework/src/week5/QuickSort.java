@@ -11,6 +11,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.StringTokenizer;
 
+// 시간복잡도 : 평균 nlog2n, 최악 : n^2
 public class QuickSort {
 	public static void main(String args[]) {
 		String fileSrc = new java.io.File("").getAbsolutePath();
@@ -75,6 +76,7 @@ public class QuickSort {
 		}
 	}
 	
+	// 퀵소트 실행
 	private static void quickSort(List<Integer> list, int start, int end) {
 		if(start < end) {
 			int mid = partition(list, start, end);
@@ -83,6 +85,8 @@ public class QuickSort {
 		
 		}
 	}
+	
+	// 나누기
 	private static int partition(List<Integer> list, int start, int end) {
 		int pivot = list.get(end);
 		int startIndex = start - 1;
