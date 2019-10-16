@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.StringTokenizer;
 
 // ½Ã°£º¹Àâµµ : Æò±Õ nlog2n, ÃÖ¾Ç : n^2
+// Äü ¼ÒÆ® ( ³¡ ÇÇº¿, ·£´ý ÇÇº¿ ) ±¸Çö
 public class QuickSort {
 	public static void main(String args[]) {
 		String fileSrc = new java.io.File("").getAbsolutePath();
