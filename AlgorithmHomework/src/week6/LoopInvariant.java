@@ -10,6 +10,7 @@ import java.util.StringTokenizer;
  * A, B를 합한 2N개의 원소 중 N 혹은 N + 1번 째 원소를 O(LogN)의 시간 복잡도 이내로
  * 찾는 알고리즘을 설계하고 이를 프로그램으로 구현하는 문제
  * 단, 두 배열을 합치는 행위는 탈락
+ * 201402407 이해원
  */
 public class LoopInvariant {
 	static int[] a, b;
@@ -34,7 +35,6 @@ public class LoopInvariant {
 				a[i] = Integer.valueOf(stA.nextToken());
 				b[i] = Integer.valueOf(stB.nextToken());
 			}
-			
 			int result = binarySearch(n);
 			System.out.println(result);
 		}
@@ -62,9 +62,15 @@ public class LoopInvariant {
 			else if(a[midA] < b[midB]) {
 				rightB = midB - 1;
 				leftA = midA + 1;
-				
 			}
 		}
+		if(midA + midB < 1000) {	// 만약 두 개의 합이 999(배열 크기와 인덱스의 홀-짝 차이)가 된 경우
+			if(a[midA] > b[midB]) 
+				return a[midA + 1];
+			else
+				return b[midB + 1];
+		}
+		
 		return Math.max(a[midA], b[midB]);
 	}
 }
