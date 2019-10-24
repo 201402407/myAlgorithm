@@ -11,6 +11,7 @@ import java.util.StringTokenizer;
  * 찾는 알고리즘을 설계하고 이를 프로그램으로 구현하는 문제
  * 단, 두 배열을 합치는 행위는 탈락
  * 201402407 이해원
+ * 끝
  */
 public class LoopInvariant {
 	static int[] a, b;
