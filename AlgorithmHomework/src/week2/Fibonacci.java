@@ -103,6 +103,7 @@ public class Fibonacci {
 		return result;
 		 
 	}
+	
 	// 두 번째 방법
 	private static BigInteger arrayFibonacci(int n) {
 		if(visited2[n])
