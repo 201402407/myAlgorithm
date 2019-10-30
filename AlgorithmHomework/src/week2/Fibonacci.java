@@ -86,6 +86,8 @@ public class Fibonacci {
 	}
 	
 	// 첫 번째 방법
+	// 재귀함수 호출. Top-down 방식.
+	// 재귀함수로 인한 메모리 소모를 줄이기 위해 Memoization 사용하는데 여기선 그냥 재귀로 했다.
 	private static BigInteger recursion(int n) {
 		if (n == 0) {
 			if(!visited1[n])
@@ -105,6 +107,9 @@ public class Fibonacci {
 	}
 	
 	// 두 번째 방법
+	// Bottom-up 방식 사용. 반복문 사용
+	// Array 방식이면 재귀함수 호출이 아니라 n = 0, n = 1인 경우에 값을 미리 넣고
+	// 2부터 n까지 반복문을 통해 n의 값을 구하는 건데 잘못 풀었다..
 	private static BigInteger arrayFibonacci(int n) {
 		if(visited2[n])
 			return arrayResult[n];
@@ -179,7 +184,6 @@ public class Fibonacci {
 					result[i][j] =  result[i][j].add(A[i][k].multiply(B[k][j]));
 				}
 			}
-			
 		}
 		return result;
 	}
