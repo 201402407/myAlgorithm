@@ -78,7 +78,6 @@ public class p10815 {
 		int left = 0;
 		int mid = 0;
 		int right = deck.length - 1; 
-		
 		while(left <= right) {
 			mid = (left + right) / 2;
 			if(deck[mid] < card) {

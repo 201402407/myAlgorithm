@@ -68,6 +68,7 @@ class Consult {
 	}
 
 	public int getWeight() {
+		
 		return weight;
 	}
 
