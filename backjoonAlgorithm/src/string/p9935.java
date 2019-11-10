@@ -7,6 +7,8 @@ import java.util.Stack;
 
 // 문자열 폭발
 // 스택 알고리즘 + 문자열 처리
+// 두 번째 방법인 toCharArray()로 배열 만들어 놓고 하는 방법을 썼는데, 더 느리고 메모리도 컸다.
+// 그냥 charAt()가 나을듯
 public class p9935 {
 	public static void main(String args[]) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -16,15 +18,17 @@ public class p9935 {
 		int bombLen = bomb.length();
 		Stack<Character> nowStack = new Stack<Character>();
 		Stack<Character> tempStack = new Stack<Character>();
+		char[] strCharArr = str.toCharArray(), bombCharArr = bomb.toCharArray();
+		char bombLastChar = bombCharArr[bombLen - 1];
 		
 		for(int i = 0; i < strLen; i++) {
-			char a = str.charAt(i);
+			char a = strCharArr[i];
 			nowStack.push(a);
-			if(a == bomb.charAt(bombLen - 1)) { // 끝 문자랑 같으면
+			if(a == bombLastChar) { // 끝 문자랑 같으면
 				tempStack.push(nowStack.pop());
 				boolean isEquals = true;
 				for(int j = bombLen - 2; j >= 0; j--) {	// 폭탄 문자열을 역순으로 탐색
-					char bombChar = bomb.charAt(j);
+					char bombChar = bombCharArr[j];
 					if(!nowStack.isEmpty() && nowStack.peek() == bombChar) {
 						tempStack.push(nowStack.pop());
 					}
