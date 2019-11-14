@@ -3,10 +3,15 @@ package week7;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Stack;
 import java.util.StringTokenizer;
 
 /*
+ * 201402407 이해원
  * 7주차 과제
  * Segmented Least Squares
  * 최소 제곱법
@@ -120,7 +125,13 @@ public class SLS {
         System.out.println("An optimal solution :");
         int index = n - 1;
         
-        Stack stack = new Stack();
+        Stack<Integer> stack = new Stack<Integer>();
+        int asd = stack.pop();
+        Queue<Integer> q = new LinkedList<Integer>();
+        ArrayList<Long> tempList = new ArrayList<Long>();
+        
+        Collections.sort(tempList);
+        int asff = stack.lastElement();
         StringBuilder sb = new StringBuilder();
         while(index > 0) { 
             int next = division[index];
