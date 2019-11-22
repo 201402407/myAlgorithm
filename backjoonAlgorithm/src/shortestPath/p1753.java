@@ -109,8 +109,8 @@ class EndVertex implements Comparable<EndVertex> {
 	}
 
 	// 이거에 따라 우선순위 큐의 우선순위도 바뀜
-	// 내림차순 : 우선순위는 높은 거부터
-	// 오름차순 : 우선순위는 낮은 거부터
+// 내림차순 : 우선순위는 높은 거부터
+// 오름차순 : 우선순위는 낮은 거부터
 	@Override
 	public int compareTo(EndVertex o) {
 		if(this.weight < o.getWeight()) {
@@ -119,5 +119,4 @@ class EndVertex implements Comparable<EndVertex> {
 		else
 			return 1;
 	}
-	
 }
