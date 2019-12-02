@@ -69,7 +69,6 @@ public class q1249 {
 			}
 		}
 		return distance[n][n];
-		
 	}
 }
 
