@@ -17,7 +17,7 @@ public class p2217 {
 		int n = Integer.valueOf(st.nextToken());
 		List<Integer> ropeList = new ArrayList<Integer>();
 		int[] rope = new int[n];
-		int[] newRope = new int[n];
+//		int[] newRope = new int[n];
 		int[] dp = new int[n];
 		
 		for(int i = 0; i < n; i++) {
@@ -26,18 +26,27 @@ public class p2217 {
 //			ropeList.add(Integer.valueOf(st.nextToken()));
 		}
 		
-		// 내림차순 정렬
 		Arrays.sort(rope);
-		for(int i = 0; i < n; i++) {
-			newRope[n - 1 - i] = rope[i];
+		dp[n - 1] = rope[n - 1];
+		for(int i = n - 2; i >= 0; i--) {
+			dp[i] = Math.max(dp[i + 1], rope[i] * (n - i));
 		}
 		
-		// n이 1인 경우 초기화
-		dp[0] = newRope[0];
-		for(int i = 1; i < n; i++) {
-			dp[i] = Math.max(dp[i - 1], newRope[i] * (i + 1));
-		}
-		int result = dp[n - 1];
+		int result = dp[0];
 		System.out.println(result);
+		
+//		// 내림차순 정렬
+//		Arrays.sort(rope);
+//		for(int i = 0; i < n; i++) {
+//			newRope[n - 1 - i] = rope[i];
+//		}
+//		
+//		// n이 1인 경우 초기화
+//		dp[0] = newRope[0];
+//		for(int i = 1; i < n; i++) {
+//			dp[i] = Math.max(dp[i - 1], newRope[i] * (i + 1));
+//		}
+//		int result = dp[n - 1];
+//		System.out.println(result);
 	}
 }
