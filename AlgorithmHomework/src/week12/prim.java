@@ -91,6 +91,7 @@ public class prim {
 		graph[9].add(end);
 	}
 	
+	// 프림 알고리즘 사용 함수
 	static int prim(int v) {
 		PriorityQueue<Vertex> queue = new PriorityQueue<Vertex>();
 		int start = 1;
