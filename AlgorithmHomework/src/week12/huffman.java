@@ -204,7 +204,6 @@ public class huffman {
 		if(node == null) {
 			return;
 		}
-		
 		getStringHuffmanCode(node.getLeft(), str + "0");	// 좌측 노드 재귀 호출
 		getStringHuffmanCode(node.getRight(), str + "1");	// 우측 노드 재귀 호출
 		if(node.getAlphabet() != '\0') {
