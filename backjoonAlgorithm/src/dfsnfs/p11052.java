@@ -40,7 +40,7 @@ public class p11052 {
 			}
 		}
 		
-		// bottom-up -> 일차원 배열로도 해결 가능한 문제.
+		// bottom-up -> 일차원 배열로도 해결 가능한 문제
 //        for(int i=2; i<=n; i++) {
 //            for(int j=1; j<i; j++) {
 //                if(d[i] < d[i-j] + d[j]) {
