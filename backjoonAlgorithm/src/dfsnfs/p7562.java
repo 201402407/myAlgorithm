@@ -60,11 +60,11 @@ public class p7562 {
 				if(visited[nextY][nextX])
 					continue;
 				// 한 번도 방문 안한 좌표 점의 count
-				if(distanceMap[nextY][nextX] == 0 || currentPoint.count + 1 < distanceMap[nextY][nextX]) {
+//				if(distanceMap[nextY][nextX] == 0 || currentPoint.count + 1 < distanceMap[nextY][nextX]) {
 					distanceMap[nextY][nextX] = currentPoint.count + 1;
 					visited[nextY][nextX] = true;
 					queue.offer(new Point7562(nextX, nextY, distanceMap[nextY][nextX]));
-				}
+//				}
 			}
 		}
 		return distanceMap[endY][endX];
