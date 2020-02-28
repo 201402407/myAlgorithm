@@ -18,6 +18,9 @@ public class p1120 {
 		
 		int aLen = a.length();
 		int bLen = b.length();
+		
+		// 1) ArrayList에 다 넣고 진행
+		// 2) min 변수를 하나 만들어서 경우 하나씩 비교해서 최솟 값(min) 갱신
 //		ArrayList<Integer> list = new ArrayList<Integer>();
 		int min = Integer.MAX_VALUE;
 		for(int i = 0; i <= bLen - aLen; i++) {	// b의 인덱스
