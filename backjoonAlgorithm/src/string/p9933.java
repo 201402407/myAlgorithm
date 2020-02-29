@@ -27,15 +27,8 @@ public class p9933 {
 		System.out.println(result.length() + " " + result.charAt(result.length() / 2));
 	}
 	
+	// 양 끝에서 시작하면 똑같은 문자가 있는지 탐색해서 존재하면 그 문자의 인덱스를 리턴하는 함수.
 	private static int getSameStrIndex(int n) {
-		/*
-		if(n == 1) {
-			String str = pwds.get(0);
-			if(compare(str, str, str.length())) {
-				return 0;
-			}
-		}
-		*/
 		for(int i = 0; i < n; i++) {
 			String a = pwds.get(i);
 			for(int j = i; j < n; j++) {
@@ -49,7 +42,8 @@ public class p9933 {
 		}
 		return -1;	// 없는 경우
 	}
-	// 두 개의 문자를 양 끝에서 비교하는 함수
+	
+	// 두 개의 문자를 각자의 양 끝에서 비교하는 함수
 	private static boolean compare(String a, String b, int len) {
 		for(int i = 0; i < len; i++) {
 			int j = len - i - 1;
