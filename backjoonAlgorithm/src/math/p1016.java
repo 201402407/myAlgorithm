@@ -43,12 +43,6 @@ public class p1016 {
 		
 		boolean[] checks = new boolean[result]; // 제곱 ㄴㄴ수가 아님을 체크. false : 제곱ㄴㄴ수, true : 제곱ㄴㄴ수가 아님.
 		long[] num = new long[result];
-		long temp = min;
-		
-		// 배열 내에 어떤 수 X를 넣기
-		for(int i = 0; i < result; i++) {
-			num[i] = temp++;
-		}
 		 
 		// 에라토스체네스의 체
 		// 제곱ㄴㄴ수를 체크하기
@@ -63,13 +57,12 @@ public class p1016 {
 ////			}
 //		}
 		
-		for(int i = 2; i <= sqrt; i++) { 
+		for(long i = 2; i <= sqrt; i++) { 
 				long squared = i * i;
-				long start = ((min - 1) / squared + 1) * squared;
+				long start = min % squared == 0 ? min / squared : (min / squared) + 1;
 //				int moc = (int) (min % squared == 0 ? 0 : min % squared);	// index
-				for(long j = start; j <= max; j += squared) {	// 몫을 1씩 증가시킴
-					if(!checks[(int) (j - min)])
-						checks[(int) (j - min)] = true;
+				for(long j = start; j * squared <= max; j ++) {	// 몫을 1씩 증가시킴( j가 몫 )
+					checks[(int) ( (j * squared) - min)] = true;
 				}
 		}
 		

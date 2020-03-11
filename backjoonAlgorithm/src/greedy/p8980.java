@@ -20,12 +20,6 @@ public class p8980 {
 		st = new StringTokenizer(br.readLine());
 		int m = Integer.valueOf(st.nextToken());
 		
-//		// 인덱스 : 1 ~ n까지
-//		// 해당 index 마을에서 실을 수 있는 박스의 전체 개수
-//		int[] loads = new int[n + 1];
-//		// 해당 index 마을에서 내릴 수 있는 박스의 전체 개수
-//		int[] unloads = new int[n + 1];	// 인덱스 : 1 ~ n까지
-		
 		int[] boxs = new int[n + 1]; // 인덱스 : 1 ~ n까지. 해당 index 마을에 도착했을 때의 트럭에 담은 박스 개수
 		ArrayList<Town> towns = new ArrayList<Town>();
 		
@@ -68,30 +62,6 @@ public class p8980 {
 			}
 		}
 		System.out.println(boxCount);
-		
-//		int boxCount = 0;
-//		int now = 0;
-//		// 1번 마을부터 끝까지 탐색
-//		for(int i = 1; i <= n; i++) {
-//			// 내리기 먼저 한 다음 싣기
-//			// 내리기
-//			if(now - unloads[i] < 0) {	// 내릴 수 있는 짐이 더 많으면 가지고 있는 짐의 최대 무게로 한다.
-//				boxCount += now;
-//				now = 0;
-//			}
-//			else {
-//				boxCount += unloads[i];
-//				now -= unloads[i];
-//			}
-//			
-//			// 싣기
-//			if(truck - now < loads[i]) { // 최대 싣을 수 있는 무게를 고려. 최대 무게보다 박스가 많으면 최대 무게만큼만 채우기.
-//				now = truck;
-//			}
-//			else {
-//				now += loads[i];
-//			}
-//		}
 	}
 }
 
