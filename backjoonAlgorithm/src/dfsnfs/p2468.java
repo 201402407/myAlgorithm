@@ -17,7 +17,6 @@ public class p2468 {
 		
 		n = Integer.valueOf(st.nextToken());
 		
-		int[][] visited = new int[n][n];	// 0: ¾ÆÁ÷ ¸ÖÂÄ. 1: checked  2: ¹°¿¡ Àá±è
 		map = new int[n][n];
 		
 		int max = 0;
@@ -39,14 +38,11 @@ public class p2468 {
 			for(int j = 0; j < n; j++) {
 				for(int k = 0; k < n; k++) {
 					if(!checked[j][k] && map[j][k] > i) {
-//						System.out.println("asd " + j + ", " + k);
 						dfs(j, k, i, checked);
 						iCount++;
 					}
 				}
 			}
-			
-//			System.out.println(iCount + ", " + i);
 			maxCount = Math.max(iCount, maxCount);
 		}
 		
