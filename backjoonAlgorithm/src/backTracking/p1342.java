@@ -11,7 +11,7 @@ public class p1342 {
 	static HashSet<String> set;
 	static boolean[] visited;
 	static char[] sCharArr;
-	
+	static int size = 0;
 	public static void main(String args[]) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		String s = br.readLine();
@@ -29,12 +29,24 @@ public class p1342 {
 			
 			backTracking(sb, len);
 		}
-		System.out.println(set.size());
+		
+		char[] alphabet = new char[26];
+		for(int i = 0; i < len; i++) {
+			alphabet[sCharArr[i] - 'a']++;
+		}
+		
+		for(int i = 0; i < 26; i++) {
+			if(alphabet[i] >= 2) {
+				size /= factorial(alphabet[i]);
+			}
+		}
+		System.out.println(size);
 	}
 	
 	static void backTracking(StringBuilder sb, int n) {
 		if(sb.length() == n) {	// 모든 문자를 뽑았을 경우
-			set.add(sb.toString());
+//			set.add(sb.toString());
+			size++;
 			return;
 		}
 		else {
@@ -53,4 +65,11 @@ public class p1342 {
 			}
 		}
 	}
+	
+	public static int factorial(int n) {
+        if(n == 1)
+            return 1;
+        
+        return n * factorial(n - 1);
+    }
 }
