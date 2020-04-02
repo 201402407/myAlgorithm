@@ -23,10 +23,17 @@ public class p11057 {
 		
 		for(int i = 2; i <= n; i++) {	// n자리까지 구하는 dp의 y를 구하는 방법
 			for(int j = 0; j < 10; j++) { // dp의 x를 구하는 방법
-				for(int k = j; k >= 0; k--) {
-					dp[i][j] += dp[i - 1][k];
+				if(j == 0) {
+					dp[i][j] = dp[i - 1][j];
+				}
+				else {
+					dp[i][j] = dp[i][j - 1] + dp[i - 1][j];
 					dp[i][j] %= 10007;
 				}
+//				for(int k = j; k >= 0; k--) {
+//					dp[i][j] += dp[i - 1][k];
+//					dp[i][j] %= 10007;
+//				}
 				result[i] += dp[i][j];
 			}
 		}
