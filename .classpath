@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="Algorithm/src"/>
+	<classpathentry kind="src" path="AlgorithmHomework/src"/>
+	<classpathentry kind="src" path="backjoonAlgorithm/src"/>
+	<classpathentry kind="src" path="kakaoCodingTest/src"/>
+	<classpathentry kind="src" path="nhnCodingTest/src"/>
+	<classpathentry kind="src" path="swExpertAcademy/src"/>
+	<classpathentry kind="output" path="backjoonAlgorithm/bin"/>
+</classpath>
