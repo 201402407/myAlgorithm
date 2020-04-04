@@ -54,6 +54,7 @@ public class p2589 {
 		Queue<Vertex> q = new LinkedList<Vertex>();
 		q.offer(new Vertex(x, y));
 		visited[y][x] = true;
+		
 		while(!q.isEmpty()) {
 			Vertex v = q.poll();
 			int nowX = v.x;
