@@ -32,7 +32,6 @@ public class p2875 {
 			else {
 				max = Math.max(max, nowN / 2);
 			}
-//			System.out.println(nowN + " , " + nowM + ", " + max);
 		}
 		System.out.println(max);
 	}
