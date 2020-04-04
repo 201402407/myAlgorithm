@@ -49,7 +49,7 @@ public class p2211 {
 	// start -> 1 까지 가는 최단 시간 경로 탐색 (다익스트라 알고리즘) 
 	static void dijkstra(int start, int n) {
 		Arrays.fill(distance, Integer.MAX_VALUE);
-		int[] path = new int[n + 1];
+		int[] path = new int[n + 1];	//최단경로를 파악하기 위해 생성 
 		PriorityQueue<Vertex2211> q = new PriorityQueue<Vertex2211>();
 		distance[start] = 0;
 		
@@ -65,12 +65,13 @@ public class p2211 {
 					if(!visited[i] && (distance[i] > distance[nowPoint] + map[nowPoint][i])) {
 						distance[i] = distance[nowPoint] + map[nowPoint][i];
 						q.offer(new Vertex2211(i, distance[i]));
-						path[i] = nowPoint;
+						path[i] = nowPoint;	// path[end] = start
 					}
 				}
 			}
 		}
 		
+		// 각 도착지점부터 시작해서 역으로 거슬러올라가며 경로를 찾고, HashSet에 담는다.
 		for(int i = 2; i <= n; i++) {
 			int end = i;
 			while(path[end] != 0) {
