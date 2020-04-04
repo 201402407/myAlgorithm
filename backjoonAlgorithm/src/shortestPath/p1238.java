@@ -17,6 +17,7 @@ public class p1238 {
 	static List<Vertex1238>[] reverseGraph;
 	static boolean[] visited, reverseVisited;
 	static int[] distance, reverseDistance;
+	
 	public static void main(String args[]) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine());

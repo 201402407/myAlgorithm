@@ -46,6 +46,7 @@ public class p1449 {
 			count++;
 			i--;
 		}
+		
 		System.out.println(count);
 	}
 }
