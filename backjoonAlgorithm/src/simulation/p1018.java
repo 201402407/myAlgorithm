@@ -89,31 +89,5 @@ public class p1018 {
 		}
 		
 		System.out.println(min);
-		
-		
-		
-//		for(int y = 1; y <= n; y++) {
-//				String line = br.readLine();
-//				for(int x = 1; x <= m; x++) {
-//					char chess = line.charAt(x - 1);
-//					if(y % 2 == 1) {
-//						// B 시작시
-//						
-//						// W 시작시
-//						
-//					}
-//					else {
-//						
-//					}
-//
-//					
-//					if(chess == 'W') {
-//						
-//					}
-//					else {
-//						
-//					}
-//			}
-//		}
 	}
 }
