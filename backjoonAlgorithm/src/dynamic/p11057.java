@@ -30,10 +30,6 @@ public class p11057 {
 					dp[i][j] = dp[i][j - 1] + dp[i - 1][j];
 					dp[i][j] %= 10007;
 				}
-//				for(int k = j; k >= 0; k--) {
-//					dp[i][j] += dp[i - 1][k];
-//					dp[i][j] %= 10007;
-//				}
 				result[i] += dp[i][j];
 			}
 		}
