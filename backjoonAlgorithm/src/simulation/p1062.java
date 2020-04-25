@@ -69,6 +69,8 @@ public class p1062 {
 			System.out.println(result);
 		}
 	}
+	
+	// 백트래킹 함수
 	static void backTracking(boolean[] alphabet, int index, int k) {
 		if(k == 0) {
 			getCountOfRead(alphabet);
@@ -96,6 +98,7 @@ public class p1062 {
 		}
 	}
 	
+	// 단어 몇 개를 읽을 수 있는지 판단하는 함수
 	static void getCountOfRead(boolean[] alphabet) {
 		int count = 0;
 		for(String word : list) {
@@ -115,6 +118,7 @@ public class p1062 {
 		result = Math.max(result, count);
 	}
 	
+	// 필수 글자 5개인지 아닌지 체크하는 boolean 함수
 	static boolean sameNeedAlphabet(char ch) {
 		if(ch == 'a' || ch == 't' || ch == 'n' || ch == 'i' || ch == 'c') {
 			return true;
