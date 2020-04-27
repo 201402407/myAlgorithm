@@ -27,6 +27,8 @@ public class p14889 {
 			}
 		}
 		
+		// 팀을 구분지을 필요가 없어 첫 번째를 True로 놓고 두 번째부터 진행
+		// ex) T ~ / F ~ 두 가지 전부 같은 결과 값을 가짐.
 		boolean[] team = new boolean[n + 1];
 		team[1] = true;
 		backTracking(team, 2, (n / 2) - 1);
