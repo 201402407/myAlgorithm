@@ -10,15 +10,15 @@ import java.util.Collections;
 import java.util.Deque;
 import java.util.StringTokenizer;
 
-// ì‚¼ì„± SW Aí˜• ê¸°ì¶œ
-// ë‚˜ë¬´ ì¬í…Œí¬. ì‹œê°„ ì œí•œ ìœ ì˜
-// Deque ì‚¬ìš©
-// í•µì‹¬ : ì •ë ¬ ì•Œê³ ë¦¬ì¦˜ ì‚¬ìš© X.
+// »ï¼º SW AÇü ±âÃâ
+// ³ª¹« ÀçÅ×Å©. ½Ã°£ Á¦ÇÑ À¯ÀÇ
+// Deque »ç¿ë
+// ÇÙ½É : Á¤·Ä ¾Ë°í¸®Áò »ç¿ë X.
 public class p16325 {
-	static int[][] map;	// í˜„ì¬ ì–‘ë¶„ ë§µ
-	static Deque<Tree> trees; // ë‚˜ë¬´ë“¤ì„ ë‹´ì€ Deque
+	static int[][] map;	// ÇöÀç ¾çºĞ ¸Ê
+	static Deque<Tree> trees; // ³ª¹«µéÀ» ´ãÀº Deque
 	 
-	static int[][] yangboon;	// ê²¨ìš¸ë§ˆë‹¤ ìƒˆë¡œ ë°›ëŠ” ì–‘ë¶„ ë§µ
+	static int[][] yangboon;	// °Ü¿ï¸¶´Ù »õ·Î ¹Ş´Â ¾çºĞ ¸Ê
 	static int[] moveX = { 0, 1, 1, 1, 0, -1, -1, -1 };
 	static int[] moveY = { -1, -1, 0, 1, 1, 1, 0, -1 };
 	
@@ -33,7 +33,7 @@ public class p16325 {
 		yangboon = new int[n + 1][n + 1];
 		trees = new ArrayDeque<Tree>();
 		
-		// ì–‘ë¶„ ì…ë ¥ë°›ê¸°
+		// ¾çºĞ ÀÔ·Â¹Ş±â
 		for(int y = 1; y <= n; y++) {
 			Arrays.fill(map[y], 5);
 			st = new StringTokenizer(br.readLine());
@@ -43,7 +43,7 @@ public class p16325 {
 			}
 		}
 		
-		// ë‚˜ë¬´ ì‹¬ê¸°
+		// ³ª¹« ½É±â
 		ArrayList<Tree> temp = new ArrayList<Tree>();
 		for(int i = 0; i < m; i++) {
 			st = new StringTokenizer(br.readLine());
@@ -54,26 +54,26 @@ public class p16325 {
 			temp.add(new Tree(x, y, age));
 		}
 		
-		// ë‚˜ë¬´ ì •ë ¬
+		// ³ª¹« Á¤·Ä
 		Collections.sort(temp);
-		// ì •ë ¬í•œ ë‚˜ë¬´ Dequeì— ë„£ê¸°
+		// Á¤·ÄÇÑ ³ª¹« Deque¿¡ ³Ö±â
 		for(Tree t : temp) {
 			trees.offer(t);
 		}
 		
-		// ë§¤ë…„ ê²½ê³¼ ì§€ì¼œë³´ê¸°
+		// ¸Å³â °æ°ú ÁöÄÑº¸±â
 		int year = 0;
 		while(year < k) {
-			// ë´„, ì—¬ë¦„
+			// º½, ¿©¸§
 			springAndSummer();
-			// ê°€ì„
+			// °¡À»
 			fall(n);
 			year++;
-			// ì–´ì°¨í”¼ ê²¨ìš¸ì—ëŠ” ì–‘ë¶„ë§Œ ë„£ì–´ì£¼ì§€ ë‚˜ë¬´ì˜ ê°œìˆ˜ëŠ” ë³€ë™ì´ ì—†ìœ¼ë¯€ë¡œ ì¡°ê¸ˆì´ë¼ë„ ì‹œê°„ ì ˆì•½ì„ ìœ„í•œ ì¡°ê±´ë¬¸
+			// ¾îÂ÷ÇÇ °Ü¿ï¿¡´Â ¾çºĞ¸¸ ³Ö¾îÁÖÁö ³ª¹«ÀÇ °³¼ö´Â º¯µ¿ÀÌ ¾øÀ¸¹Ç·Î Á¶±İÀÌ¶óµµ ½Ã°£ Àı¾àÀ» À§ÇÑ Á¶°Ç¹®
 			if(year == k) {	
 				break;
 			}
-			// ê²¨ìš¸
+			// °Ü¿ï
 			winter(n);
 		}
 		
@@ -89,19 +89,19 @@ public class p16325 {
 			int x = tree.x;
 			int y = tree.y;
 			int age = tree.age;
-			if(map[y][x] < age) {	// ì–‘ë¶„ì´ ë¶€ì¡±í•˜ë©´
+			if(map[y][x] < age) {	// ¾çºĞÀÌ ºÎÁ·ÇÏ¸é
 				deadTrees.add(tree);
 			}
-			else {	// ì–‘ë¶„ì´ ì¶©ë¶„í•˜ë©´
+			else {	// ¾çºĞÀÌ ÃæºĞÇÏ¸é
 				map[y][x] -= age;
 				tempQueue.offer(new Tree(x, y, age + 1));
 			}
 		}
 		
-		// ì‚´ì•„ë‚¨ì€ ë‚˜ë¬´ ì§‘ì–´ë„£ê¸°
+		// »ì¾Æ³²Àº ³ª¹« Áı¾î³Ö±â
 		trees = tempQueue;
 		
-		// ì£½ì€ ë‚˜ë¬´ ì–‘ë¶„ì£¼ê¸° - ì—¬ë¦„
+		// Á×Àº ³ª¹« ¾çºĞÁÖ±â - ¿©¸§
 		for(Tree t : deadTrees) {
 			map[t.y][t.x] += Math.floor(t.age / 2);
 		}
@@ -111,12 +111,12 @@ public class p16325 {
 		Deque<Tree> tempTree = new ArrayDeque<Tree>();
 		
 		while(!trees.isEmpty()) {
-			Tree tree = trees.pollFirst();	// ê°€ì¥ ì‘ì€ ê²ƒë“¤ë¶€í„° ë¹¼ë‚´ì•¼ ì •ë ¬ëœ ì±„ë¡œ ê°€ì§ˆ ìˆ˜ ìˆìŒ
+			Tree tree = trees.pollFirst();	// °¡Àå ÀÛÀº °ÍµéºÎÅÍ »©³»¾ß Á¤·ÄµÈ Ã¤·Î °¡Áú ¼ö ÀÖÀ½
 			int x = tree.x;
 			int y = tree.y;
 			int age = tree.age;
 			
-			// ì£¼ìœ„ì— ë‚˜ë¬´ ì‹¬ê¸°
+			// ÁÖÀ§¿¡ ³ª¹« ½É±â
 			if(age % 5 == 0) {
 				for(int i = 0; i < moveX.length; i++) {
 					int nextX = x + moveX[i];
@@ -156,7 +156,7 @@ class Tree implements Comparable<Tree> {
 		this.age = age;
 	}
 	
-	// ë‚´ë¦¼ì°¨ìˆœ
+	// ³»¸²Â÷¼ø
 	@Override
 	public int compareTo(Tree o2) {
 		if(this.age < o2.age) {
