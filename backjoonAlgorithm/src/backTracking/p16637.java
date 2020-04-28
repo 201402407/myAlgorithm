@@ -1,14 +1,14 @@
 package backTracking;
 
-import javax.script.ScriptEngine;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Stack;
-import java.util.StringTokenizer;
 
+import javax.script.ScriptEngine;
+
+// 괄호 추가하기 문제
+// 백트래킹?
 public class p16637 {
 	static char[] mathExp;
 	static int n;
@@ -16,7 +16,7 @@ public class p16637 {
 	static ScriptEngine engine;
 	public static void main(String args[]) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-
+		
 		n = Integer.valueOf(br.readLine());
 		String str = br.readLine();
 		mathExp = str.toCharArray();
@@ -26,7 +26,7 @@ public class p16637 {
 		System.out.println(max);
 	}
   
-		// 백트래킹
+	// 백트래킹
 	static void backTracking(boolean[] selected, int index, int selectedIndex) {
 		if(index >= n) {
 			calculate(selected);
@@ -72,7 +72,7 @@ public class p16637 {
 		}
 		
 		// 왼쪽부터 순차적으로 계산
-		while(!charStack.isEmpty() && numStack.size() >= 2 ) {
+		while(!charStack.isEmpty() && numStack.size() >= 2) {
 			int lastNum = numStack.pollFirst();
 			int nextNum = numStack.pollFirst();
 			char buho = charStack.pollFirst();
@@ -83,6 +83,7 @@ public class p16637 {
 		max = Math.max(max, result);
 	} 
 	
+	// 부호 계산
 	static int calculateOfBuho(int lastNum, char buho, int nextNum) {
 		switch(buho) {
 		case '+':
