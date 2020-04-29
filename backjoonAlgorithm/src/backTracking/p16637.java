@@ -5,15 +5,13 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.LinkedList;
 
-import javax.script.ScriptEngine;
-
 // 괄호 추가하기 문제
 // 백트래킹?
 public class p16637 {
 	static char[] mathExp;
 	static int n;
 	static int max = Integer.MIN_VALUE;
-	static ScriptEngine engine;
+	
 	public static void main(String args[]) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		
@@ -37,6 +35,7 @@ public class p16637 {
 				// 선택
 				selected[index] = true;
 				backTracking(selected, index + 2, index);
+				// 선택 X
 				selected[index] = false;
 				backTracking(selected, index + 2, selectedIndex);
 			}

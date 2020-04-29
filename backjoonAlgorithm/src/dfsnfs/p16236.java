@@ -1,15 +1,14 @@
-package temp;
+package dfsnfs;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
-import java.util.LinkedList;
 import java.util.PriorityQueue;
-import java.util.Queue;
 import java.util.StringTokenizer;
 
-// 16236
+// 아기 상어 문제
+// 삼성 SW 기출 - BFS
 public class p16236 {
 	static Fish targetFish = null;
 	static int n, sharkX, sharkY, sharkSize, sharkEatCount;
@@ -83,11 +82,6 @@ public class p16236 {
 						continue;
 					}
 					
-					// 상어 자기 자리
-//					if(map[nextY][nextX] == 9) {
-//						continue;
-//					}
-					
 					// 물고기가 아니면(또는, 크기가 같으면) 통과
 					if(map[nextY][nextX] == sharkSize || map[nextY][nextX] == 0) {
 						visited[nextY][nextX] = true;
@@ -99,16 +93,6 @@ public class p16236 {
 					if(map[nextY][nextX] < sharkSize && map[nextY][nextX] > 0) {
 						visited[nextY][nextX] = true;
 						q.add(new Fish(nextX, nextY, fish.distance + 1));
-//						if(targetFish == null) {	
-//							targetFish = myFish;
-//							break;
-//						}
-//						else {
-//							// 물고기 비교해서 이전 목표 물고기보다 더 나은 조건이면 바꾸기
-//							if(targetFish.compareTo(myFish) == -1) {
-//								targetFish = myFish;
-//							}
-//						}
 					}
 				}
 			}
