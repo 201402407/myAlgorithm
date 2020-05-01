@@ -1,4 +1,4 @@
-package temp;
+package anything;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -6,11 +6,13 @@ import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.StringTokenizer;
 
-public class temp3 {
-	static int[][] map;
-	static boolean[][] checked;
-	static int[][] unionMap;
-	static int[] newPeople;
+// ÀÎ±¸ ÀÌµ¿ ¹®Á¦
+// DFS ?
+public class p16234 {
+	static int[][] map;	// °¢ ±¸¿ª º° ÀÎ±¸ ¼ö¸¦ ´ãÀº ¸Ê
+	static boolean[][] checked;	// °¢ ±¸¿ª ¹æ¹® ¿©ºÎ ÆÇ´ÜÇÏ´Â ¹è¿­
+	static int[][] unionMap; // °¢ ±¸¿ªÀÇ Level(¿¬ÇÕ)À» ³ªÅ¸³»´Â ¸Ê
+	static int[] newPeople;	// Level º° ÆòµîÇÏ°Ô ºĞ¹èµÉ ÀÎ±¸ ¼ö¸¦ °®°í ÀÖ´Â ¹è¿­
 	static int dfsCount, n, l, r;
 	static int[] moveX = { 0, 1, 0, -1 };
 	static int[] moveY = { -1, 0, 1, 0 };
@@ -30,7 +32,7 @@ public class temp3 {
 		
 		for(int i = 0; i < n; i++) {
 			st = new StringTokenizer(br.readLine());
-			Arrays.fill(unionMap[i], -1);
+			Arrays.fill(unionMap[i], -1); // ±âº» °ª ÃÊ±âÈ­ : -1
 			for(int j = 0; j < n; j++) {
 				int people = Integer.valueOf(st.nextToken());
 				map[i][j] = people;
@@ -38,7 +40,7 @@ public class temp3 {
 		}
 		
 		boolean isOpened = false;
-		// whileë¬¸ì„ ë§Œì¡±í•˜ë©´ í•˜ë‚˜ë¼ë„ êµ­ê²½ì„ ì„ ì—´ ìˆ˜ ìˆìœ¼ë¯€ë¡œ ì‹œì‘ì€ -1ë¡œ í•´ì•¼ 0ë¶€í„° ì‹œì‘ëœë‹¤.
+		// while¹®À» ¸¸Á·ÇÏ¸é ÇÏ³ª¶óµµ ±¹°æ¼±À» ¿­ ¼ö ÀÖÀ¸¹Ç·Î ½ÃÀÛÀº -1·Î ÇØ¾ß 0ºÎÅÍ ½ÃÀÛµÈ´Ù.
 		int day = 0;	
 		
 		do {
@@ -48,15 +50,15 @@ public class temp3 {
 			for(int y = 0; y < n; y++) {
 				for(int x = 0; x < n; x++) {
 					if(unionMap[y][x] == -1) {
-						dfsCount = 0;	// ì´ˆê¸°í™”
-						newPeople[unionIndex] = 0;	// ì´ˆê¸°í™”
+						dfsCount = 0;	// ÃÊ±âÈ­
+						newPeople[unionIndex] = 0;	// ÃÊ±âÈ­
 						open(x, y, unionIndex);
 						
-						// ì—°í•©ì´ í•˜ë‚˜ë¼ë„ ìˆìœ¼ë©´
+						// ¿¬ÇÕÀÌ ÇÏ³ª¶óµµ ÀÖÀ¸¸é
 						if(dfsCount >= 2) {
 							isOpened = true;
 							
-							// í‰ë“±í™”í•  ì¸êµ¬ êµ¬í•˜ê¸°
+							// ÆòµîÈ­ÇÒ ÀÎ±¸ ±¸ÇÏ±â
 							newPeople[unionIndex] = (int) Math.floor(newPeople[unionIndex] / dfsCount);
 						}
 						
@@ -64,6 +66,7 @@ public class temp3 {
 					}
 				}
 			}
+			// °æ°è¸¦ ¿­Àº ÀûÀÌ ¾øÀ» ¶§ ±îÁö ¹İº¹
 			if(isOpened) {
 				day++;
 				setNewPeople();
@@ -74,6 +77,7 @@ public class temp3 {
 		System.out.println(day);
 	}
 	
+	// DFS. °æ°è¹®À» ¿©´Â ÇÔ¼ö
 	static void open(int x, int y, int unionIndex) {
 		if(unionMap[y][x] != -1) {
 			return;
@@ -88,10 +92,12 @@ public class temp3 {
 			int nextX = x + moveX[i];
 			int nextY = y + moveY[i];
 			
+			// ¸Ê ¹üÀ§ ¿¹¿Ü Ã³¸®
 			if(nextX < 0 || nextX >= n || nextY < 0 || nextY >= n) {
 				continue;
 			}
 			
+			// ¾ÆÁ÷ ÇÑ ¹øµµ ¹æ¹®ÇÏÁö ¾Ê¾Ò´ø ±¸¿ª Ã£±â
 			if(unionMap[nextY][nextX] == -1) {
 				int gap = Math.abs(map[y][x] - map[nextY][nextX]);
 				if(gap >= l && gap <= r) {
@@ -101,6 +107,7 @@ public class temp3 {
 		}
 	}
 	
+	// ¿¬ÇÕ¿¡ µû¶ó ÀÎ±¸ ÀÌµ¿ ÇÔ¼ö ¹× unionMap ¹è¿­ ÃÊ±âÈ­
 	static void setNewPeople() {
 		for(int i = 0; i < n; i++) {
 			for(int j = 0; j < n; j++) {
