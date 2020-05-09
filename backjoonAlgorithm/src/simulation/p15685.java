@@ -43,11 +43,6 @@ public class p15685 {
 				}
 				dragonCurves[i].offerLast((nowDirection - 1) % 4);
 			}
-			
-//			for(int k = 0; k < dragonCurves[i].size(); k++) {
-//				System.out.print(dragonCurves[i].get(k) + " ");
-//			}
-//			System.out.println();
 		}
 		
 		for(int i = 0; i < n; i++) {
@@ -68,19 +63,6 @@ public class p15685 {
 				map[y][x] = true;
 			}
 		}
-		
-//		for(int i = 0; i < 101; i++) {
-//			for(int j = 0; j < 101; j++) {
-//				if(map[i][j]) {
-//					System.out.print(1 + " ");	
-//				}
-//				else {
-//					System.out.print(0 + " ");
-//				}
-//				
-//			}
-//			System.out.println();
-//		}
 		
 		int count = 0;
 		// 네모를 그릴 수 있는지 판단하기

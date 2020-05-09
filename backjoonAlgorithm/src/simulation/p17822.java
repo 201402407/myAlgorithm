@@ -124,7 +124,6 @@ public class p17822 {
 			
 			circle[index] = tempArray;
 			
-			// 안조은방법 찾기
 //			while(count < m) {
 //				System.out.println(start + " is now start");
 //				// 시계 방향
