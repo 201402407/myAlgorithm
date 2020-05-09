@@ -12,7 +12,6 @@ import java.util.StringTokenizer;
 public class p17837 {
 	static int[][] horses, map;
 	static int n;
-//	static LinkedList<Integer> horseIndexs;
 	static Deque<Integer>[][] horseIndexs;
 	static int[] moveX = { 1, -1, 0, 0 }; // 오, 왼, 위, 아래
 	static int[] moveY = { 0, 0, -1, 1 };
@@ -51,44 +50,20 @@ public class p17837 {
 			horses[i][2] = direction; 
 			horseIndexs[y][x].offer(i);
 			
-			if(x == 6 && y == 1) {
-				System.out.println(direction);
-			}
 		}
 		
 		int time = 1;
 		while(time <= 1000) {
-			System.out.println(time + " ::::: time ");
-			if(time == 8)
-				break;
-			
 			for(int i = 1; i <= k; i++) {
 				int x = horses[i][0];
 				int y = horses[i][1];
 				int direction = horses[i][2];
 				
-				if(i == 7 && x == 6 && y == 1) {
-					System.out.println(" x : " + x + " , " + y + " ,,, " + direction + "  zz  ");
-				}
-				
-//				if(time == 7) {
-//				System.out.println();
-//					System.out.println(i + " :::::::::::::: index");
-//					for(int ii = 1; ii <= n; ii++) {
-//						for(int j = 1; j <= n; j++) {
-//							System.out.print(horseIndexs[ii][j].size() + " ");
-//						}
-//						System.out.println();
-//					}
-//					System.out.println();	
-//				}
-				
 				if(move(x, y, direction, i, false)) {
 					System.out.println(time);
 					return;
 				}	
-			}
-			
+			}			
 			time++;
 		}
 		System.out.println(-1);
@@ -130,7 +105,6 @@ public class p17837 {
 					}	
 				}
 			}
-			
 			horseIndexs[y][x] = tempDeque;
 			return horseIndexs[nextY][nextX].size() >= 4 ? true : false;
 		case 1:	// 빨간색
@@ -148,6 +122,7 @@ public class p17837 {
 			// 주어진 방향 정수의 뜻에 맞게 반대 방향 구하기
 			int oppositeDirection = direction % 2 == 0 ? direction + 1 : direction - 1;
 			if(!visitedBlue) {	// 이미 파란색을 만나서 뒤돌은 경우
+				horses[index][2] = oppositeDirection;
 				return move(x, y, oppositeDirection, index, true);
 			}
 			return false;
