@@ -1,11 +1,11 @@
-package temp;
+package anything;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-// 앞뒤가 맞는 수열
+// 16570번 : 앞뒤가 맞는 수열
 public class p16570 {
 	static int[] seq, countSum;
 	public static void main(String args[]) throws IOException {

@@ -1,9 +1,8 @@
-package temp;
+package string;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.StringTokenizer;
 
 // 2810 : 컵홀더
 // 문자열 처리

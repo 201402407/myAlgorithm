@@ -1,10 +1,11 @@
-package temp;
+package dynamic;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
 // 백준 1509번 : 팰린드롬 분할
+// 동적 프로그래밍 문제
 public class p1509 {
 	static String str;
 	static char[] strCharArr;

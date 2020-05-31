@@ -1,14 +1,14 @@
-package temp;
+package anything;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.PriorityQueue;
 import java.util.StringTokenizer;
 
+// 두 용액
+// 이진탐색 비슷한 문제
 public class p2470 {
 	static ArrayList<Integer> plusList, minusList;
 	
@@ -18,32 +18,32 @@ public class p2470 {
 //		
 //		int n = Integer.valueOf(st.nextToken());
 //		plusList = new ArrayList<Integer>();
-//		minusList = new ArrayList<Integer>(); // 음수는 내림차순해야 0에 가까운 음수가 나온다.
+//		minusList = new ArrayList<Integer>(); // �쓬�닔�뒗 �궡由쇱감�닚�빐�빞 0�뿉 媛�源뚯슫 �쓬�닔媛� �굹�삩�떎.
 //		
 //		st = new StringTokenizer(br.readLine());
 //		for(int i = 0; i < n; i++) {
 //			int num = Integer.valueOf(st.nextToken());
-//			if(num > 0) {	// 양수
+//			if(num > 0) {	// �뼇�닔
 //				plusList.add(num);
 //			}
-//			if(num < 0) {	// 음수
+//			if(num < 0) {	// �쓬�닔
 //				minusList.add(num);
 //			}
 //		}
 //		
-//		Collections.sort(plusList);	// 오름차순
-//		Collections.sort(minusList);	// 내림차순
+//		Collections.sort(plusList);	// �삤由꾩감�닚
+//		Collections.sort(minusList);	// �궡由쇱감�닚
 //		Collections.reverse(minusList);
 //		
 //		int[] result = new int[2];
 //		int min = Integer.MAX_VALUE;
 //		
-//		// 양수 <-> 음수 비교
+//		// �뼇�닔 <-> �쓬�닔 鍮꾧탳
 //		if(plusList.size() > 0 && minusList.size() > 0) {
 //			int plusIndex = 0;
 //			int minusIndex = 0;
 //			
-//			// 양수 기준
+//			// �뼇�닔 湲곗�
 //			for(int i = 0; i < plusList.size(); i++) {
 //				if(minusIndex >= minusList.size()) {
 //					break;
@@ -67,7 +67,7 @@ public class p2470 {
 //				}
 //			}
 //			
-//			// 음수 기준
+//			// �쓬�닔 湲곗�
 //			for(int i = 0; i < minusList.size(); i++) {
 //				if(plusIndex >= plusList.size()) {
 //					break;
@@ -92,7 +92,7 @@ public class p2470 {
 //			}
 //		}
 //		
-//		// 양수 <-> 양수 비교
+//		// �뼇�닔 <-> �뼇�닔 鍮꾧탳
 //		if(plusList.size() >= 2) {
 //			if(min > plusList.get(0) + plusList.get(1)) {
 //				min = plusList.get(0) + plusList.get(1);
@@ -101,7 +101,7 @@ public class p2470 {
 //			}
 //		}
 //		
-//		// 음수 <-> 음수  비교
+//		// �쓬�닔 <-> �쓬�닔  鍮꾧탳
 //		if(minusList.size() >= 2) {
 //			if(min > Math.abs(minusList.get(0) + minusList.get(1))) {
 //				min = Math.abs(minusList.get(0) + minusList.get(1));
@@ -110,7 +110,7 @@ public class p2470 {
 //			}
 //		}
 //		
-//		// 출력 시 오름차순 출력
+//		// 異쒕젰 �떆 �삤由꾩감�닚 異쒕젰
 //		Arrays.sort(result);
 //		System.out.println(result[0] + " " + result[1]);
 //	}

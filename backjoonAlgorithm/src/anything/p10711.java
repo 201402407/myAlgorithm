@@ -1,4 +1,4 @@
-package temp;
+package anything;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -9,6 +9,7 @@ import java.util.Queue;
 import java.util.StringTokenizer;
 
 // 10711번 : 모래성
+// 탐색 문제
 public class p10711 {
 	static int[][] map;
 	static boolean[][] boolMap;

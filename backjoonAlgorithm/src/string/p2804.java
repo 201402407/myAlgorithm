@@ -1,9 +1,11 @@
-package temp;
+package string;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+// 크로스워드 만들기
+// 문자열 처리
 public class p2804 {
 	static int x, y;
 	public static void main(String args[]) throws IOException {
