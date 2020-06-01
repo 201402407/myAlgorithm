@@ -1,7 +1,12 @@
-package temp;
+package disjointSet;
 
-import java.io.*;
-import java.util.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.StringTokenizer;
 
 // 여행 가자
 // Disjoint - Set ?
@@ -39,22 +44,6 @@ public class p1976 {
 			int dest = Integer.parseInt(st.nextToken());
 			route.add(dest);
 		}
-		
-//		for(int i = 1; i <= n; i++) {
-//			for(int j = 0; j < graph[i].size(); j++) {
-//				System.out.print(graph[i].get(j) + " ");
-//			}
-//			System.out.println();
-//		}
-		
-		boolean check = true;
-		
-//		for(int i = 0; i < route.size() - 1; i++) {
-//			if(!possibleRoute(n, route.get(i), route.get(i + 1))) {
-//				check = false;
-//				break;
-//			}
-//		}
 		
 		String print = possibleRoute(n, route.get(0)) ? "YES" : "NO";
 		System.out.println(print);
