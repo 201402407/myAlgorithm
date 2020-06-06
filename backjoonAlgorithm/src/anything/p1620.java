@@ -1,4 +1,4 @@
-package temp;
+package anything;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.StringTokenizer;
 
 // HASH
+// 나는야 포켓몬 마스터 이다솜
 public class p1620 {
 	public static void main(String args[]) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -41,12 +42,14 @@ public class p1620 {
 		System.out.println(sb.toString());
 	}
 	
-	 public static boolean isStringNumber(String s) {
-	    try {
-	        Double.parseDouble(s);
-	        return true;
-	    } catch (NumberFormatException e) {
-	        return false;
-	    }
-	  }
+	// 이 문자열이 숫자인지 아닌지 판단하는 함수
+	public static boolean isStringNumber(String s) {
+	   try {
+	       Double.parseDouble(s);
+	       return true;
+	   }
+	   catch (NumberFormatException e) {
+	       return false;
+	   }
+	}
 }

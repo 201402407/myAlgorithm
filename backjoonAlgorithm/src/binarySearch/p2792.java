@@ -1,12 +1,12 @@
-package temp;
+package binarySearch;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
 import java.util.StringTokenizer;
 
-// 이진탐색
+// 이진탐색(=이분 탐색)
+// 보석 상자
 public class p2792 {
 	static int[] colors;
 	static int max;
@@ -18,6 +18,7 @@ public class p2792 {
 		int m = Integer.parseInt(st.nextToken());
 		colors = new int[m];
 		
+		// 이진탐색 시 필요한 high(최대 범위) 를 입력할 때 구한다.
 		for(int i = 0; i < m; i++) {
 			colors[i] = Integer.parseInt(br.readLine());
 			if(max < colors[i]) {

@@ -1,11 +1,12 @@
-package temp;
+package binarySearch;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-// ÀÌÁøÅ½»ö
+// ì´ì§„íƒìƒ‰
+// ì…êµ­ì‹¬ì‚¬
 public class p3079 {
 	static int[] tables;
 	static long maxHigh = 0;
@@ -28,12 +29,12 @@ public class p3079 {
 		System.out.println(min);
 	}
 	
-	// ÃÖ¼Ò ½Ã°£ ¾ò´Â ÇÔ¼ö
+	// ìµœì†Œ ì‹œê°„ ì–»ëŠ” í•¨ìˆ˜
 	static void getMinTime(int n, int m) {
 		long low = 0;
 		long high = maxHigh * m;
 		
-		// °¡´É ½Ã°£ ¹üÀ§¸¦ ±¸ÇÏ±â À§ÇÑ ÀÌÁøÅ½»ö
+		// ê°€ëŠ¥ ì‹œê°„ ë²”ìœ„ë¥¼ êµ¬í•˜ê¸° ìœ„í•œ ì´ì§„íƒìƒ‰
 		while(low <= high) {
 			long mid = (low + high) / 2;
 			long sum = 0;
@@ -41,8 +42,8 @@ public class p3079 {
 			for(int ele : tables) {
 				long needPeopleCount = mid / ele;
 				
-				// ±»ÀÌ Á¤·ÄÇØ¼­ 0ÀÌ ³ª¿À´Â °æ¿ì¸¸ breakÇÒ ÇÊ¿ä ¾øÀÌ 
-				// sum >= m ÀÌ µÇ¸é ´õÇØºÃÀÚ ÀÇ¹Ì ¾øÀ¸¹Ç·Î ¹Ù·Î ¹İº¹¹®À» Á¾·á½ÃÅ²´Ù.
+				// êµ³ì´ ì •ë ¬í•´ì„œ 0ì´ ë‚˜ì˜¤ëŠ” ê²½ìš°ë§Œ breakí•  í•„ìš” ì—†ì´ 
+				// sum >= m ì´ ë˜ë©´ ë”í•´ë´¤ì ì˜ë¯¸ ì—†ìœ¼ë¯€ë¡œ ë°”ë¡œ ë°˜ë³µë¬¸ì„ ì¢…ë£Œì‹œí‚¨ë‹¤.
 				if(sum >= m) {
 					break;
 				}

@@ -1,10 +1,11 @@
-package temp;
+package backTracking;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
+// 로또
 // 순열
 public class p6603 {
 	static int[] result;

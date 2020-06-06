@@ -1,4 +1,4 @@
-package temp;
+package bruteforce;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -68,6 +68,7 @@ public class p14888 {
 		min = min < result ? min : result;
 	}
 	
+	// 부호에 맞게 연산해서 결과값을 리턴하는 함수
 	static int calculate(int a, int b, int buho) {
 		switch(buho) {
 		case 0:	// 덧셈
