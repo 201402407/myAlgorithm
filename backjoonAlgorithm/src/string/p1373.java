@@ -52,3 +52,4 @@ public class p1373 {
 		System.out.println(new String(eightCharArr));
 	}
 }
+// end
