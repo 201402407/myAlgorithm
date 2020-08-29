@@ -4,10 +4,10 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-// 2Áø¼ö 8Áø¼ö
-// ¹®ÀÚ¿­ ¹®Á¦ 
+// 2ì§„ìˆ˜ 8ì§„ìˆ˜
+// ë¬¸ìì—´ ë¬¸ì œ 
 public class p1373 {
-	static int[] powNumbers = {1, 2, 4};
+	static int[] powNumbers = {1, 2, 4}; // 2^0, 2^1, 2^2
 	static char[] eightCharArr;
 	
 	public static void main(String args[]) throws IOException {
@@ -16,6 +16,8 @@ public class p1373 {
 		char[] twoCharArr = twoStr.toCharArray();
 		int len = twoCharArr.length;
 		int index;
+		
+		// 3ìœ¼ë¡œ ë‚˜ëˆ„ì–´ë–¨ì–´ì§€ì§€ ì•Šìœ¼ë©´, í•œ ìë¦¬ê°€ ì¶”ê°€ëœë‹¤. 
 		if(len % 3 != 0) {
 			index = (len / 3);
 		}
@@ -23,16 +25,16 @@ public class p1373 {
 			index = (len / 3) - 1;
 		}
 		
-		eightCharArr = new char[index + 1];
+		eightCharArr = new char[index + 1]; // Stringì— appendë³´ë‹¤ ë°°ì—´ì— ë¬¸ìë¥¼ ì§‘ì–´ë„£ëŠ” ë°©ì‹ìœ¼ë¡œí•˜ì—¬ ë©”ëª¨ë¦¬ ë° ì†ë„í–¥ìƒ 
 		
-		// 2Áø¼ö -> 8Áø¼ö. 3ÀÚ¸®¾¿ ²÷¾î¼­ ±¸ÇÏ±â
-		// 2Áø¼ö inputÀÇ ÃÖ´ë ±æÀÌ°¡ 1000000 º¸´Ù ÀÛÀ½. Áï, 10Áø¼ö·Î ÃÖ´ë ÀÔ·Â °ªÀº 2^999999 ÀÌ´Ù.
+		// 2ì§„ìˆ˜ -> 8ì§„ìˆ˜. 3ìë¦¬ì”© ëŠì–´ì„œ êµ¬í•˜ê¸°
+		// 2ì§„ìˆ˜ inputì˜ ìµœëŒ€ ê¸¸ì´ê°€ 1000000 ë³´ë‹¤ ì‘ìŒ. ì¦‰, 10ì§„ìˆ˜ë¡œ ìµœëŒ€ ì…ë ¥ ê°’ì€ 2^999999 ì´ë‹¤.
 		int powNumber = 0, num = 0;
 		
 		while(--len >= 0) {
-			num += (twoCharArr[len] - '0') * powNumbers[powNumber]; // 2Áø¼ö °ª * powNumber ¹ø Â° ÀÚ¸® 
+			num += (twoCharArr[len] - '0') * powNumbers[powNumber]; // 2ì§„ìˆ˜ ê°’ * powNumber ë²ˆ ì§¸ ìë¦¬ 
 			
-			if(powNumber == 2) {
+			if(powNumber == 2) { // 2ì§„ìˆ˜ 3ìë¦¬ë¥¼ ì „ë¶€ ê³„ì‚°í–ˆìœ¼ë©´ ë¬¸ìì—´ì— ì¶”ê°€
 				eightCharArr[index] = (char) (num + '0');
 				index--;
 				powNumber = 0;
@@ -48,26 +50,5 @@ public class p1373 {
 		}
 		
 		System.out.println(new String(eightCharArr));
-//		// 2Áø¼ö -> 10Áø¼ö
-//		int len = twoCharArr.length;
-//		int mul = len - 1;
-//		int ten = 0;
-//		for(int i = 0; i < len; i++) {
-//			int num = twoCharArr[i] - '0';
-//			ten += num * Math.pow(2, mul - i);
-//		}
-//		
-//		System.out.println(ten);
-//		
-//		// 10Áø¼ö -> 8Áø¼ö
-//		String eight = "";
-//		while(ten >= 8) { // ´õÀÌ»ó ÀÚ¸® ¼ö°¡ Ãß°¡µÇÁö ¾ÊÀ» ¶§ ±îÁö ¹İº¹ ¼öÇà 
-//			int remain = ten % 8;
-//			eight = String.valueOf(remain) + eight;
-//			ten = ten / 8;
-//		}
-//		
-//		eight = String.valueOf(ten) + eight;
-//		System.out.println(eight);
 	}
 }
