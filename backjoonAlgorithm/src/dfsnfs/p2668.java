@@ -3,13 +3,10 @@ package temp;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
 
-// ¼ıÀÚ°í¸£±â
+// ìˆ«ìê³ ë¥´ê¸°
 // DFS
 public class p2668 {
-	static List<Integer> sameCardIndex;
 	static int[] cards;
 	static boolean[] checked;
 	static boolean isCycle;
@@ -18,22 +15,15 @@ public class p2668 {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		int n = Integer.valueOf(br.readLine());
 		
-		// input °ª ¹è¿­¿¡ ÀúÀå 
+		// input ê°’ ë°°ì—´ì— ì €ì¥ 
 		cards = new int[n + 1];
-		checked = new boolean[n + 1]; // ÇØ´ç Ä«µå »Ì¾Ò´ÂÁö ¿©ºÎ È®ÀÎ
-		sameCardIndex = new ArrayList<Integer>();
+		checked = new boolean[n + 1]; // í•´ë‹¹ ì¹´ë“œ ë½‘ì•˜ëŠ”ì§€ ì—¬ë¶€ í™•ì¸
 		for(int i = 1; i <= n; i++) {
 			cards[i] = Integer.valueOf(br.readLine());
 		}
 		
-		// ÀÎµ¦½º - °ª ÀÌ °°Àº ½Ö Ã£±â -> ¹«Á¶°Ç °¢°¢ÀÇ ÁıÇÕ ½Ö¿¡ ¿µÇâÀ» ÁÖÁö ¾Ê±â ¶§¹®¿¡.
-		// µÎ °ªÀÌ °°À¸¸é ¾î¶² Ä«µå¸¦ »Ìµç ÀÌ Ä«µå¸¦ »Ì¾Æ¾ß ÃÖ´ë °³¼ö°¡ Áõ°¡ÇÑ´Ù.
-//		for(int i = 1; i <= n; i++) {
-//			if(i == cards[i]) {
-//				checked[i] = true;
-//			}
-//		}
-		
+		// ì¸ë±ìŠ¤ - ê°’ ì´ ê°™ì€ ìŒ ì°¾ê¸° -> ë¬´ì¡°ê±´ ê°ê°ì˜ ì§‘í•© ìŒì— ì˜í–¥ì„ ì£¼ì§€ ì•Šê¸° ë•Œë¬¸ì—.
+		// ë‘ ê°’ì´ ê°™ìœ¼ë©´ ì–´ë–¤ ì¹´ë“œë¥¼ ë½‘ë“  ì´ ì¹´ë“œë¥¼ ë½‘ì•„ì•¼ ìµœëŒ€ ê°œìˆ˜ê°€ ì¦ê°€í•œë‹¤.
 		for(int i = 1; i <= n; i++) {
 			if(i == cards[i]) {
 				checked[i] = true;
@@ -46,7 +36,7 @@ public class p2668 {
 			
 			isCycle = false;
 			
-			// ¹éÆ®·¡Å· 
+			// ë°±íŠ¸ë˜í‚¹ 
 			checked[i] = true;
 			getCycle(i, i, n);
 			if(!isCycle) {
@@ -67,17 +57,7 @@ public class p2668 {
 		System.out.println(sb.toString());
 	}
 	
-	
-	static boolean[] copyBoolArr(int n) {
-		boolean[] temp = new boolean[n + 1];
-		for(int i = 0; i < sameCardIndex.size(); i++) {
-			temp[sameCardIndex.get(i)] = true;
-		}
-		
-		return temp;
-	}
-	
-	// »çÀÌÅ¬ Ã£¾Æ¼­ ¸®½ºÆ®¿¡ ÀúÀåÇÏ±â 
+	// ì‚¬ì´í´ ì°¾ì•„ì„œ ë¦¬ìŠ¤íŠ¸ì— ì €ì¥í•˜ê¸° 
 	// DFS
 	static void getCycle(int index, int last, int n) {
 		int ele = cards[index];
@@ -93,41 +73,5 @@ public class p2668 {
 		if(ele == last) {
 			isCycle = true;
 		}
-//		int count = 0;	// ÀÌ ÇÔ¼ö¸¦ È£ÃâÇÑ °Í ÀÚÃ¼°¡ Ä«µå¸¦ »ÌÀº °Í ÀÌ¹Ç·Î 
-//		int ele = cards[index];
-//		boolean isPossible = true;
-//		
-//		while(ele != index) {
-//			// °°Àº ÇÑ ½ÖÀÇ Ä«µå³ª, ÀÌ¹Ì »Ì¾Ò´ø Ä«µå³ª ¾îÂ÷ÇÇ ½ÃÀÛ index·Î ¿¬°áµÇÁö ¾ÊÀ¸¸é Æ²¸° °Í. 
-//			if(checked[ele]) {
-//				isPossible = false;
-//				break;
-//			}
-//			
-//			checked[ele] = true;
-//			ele = cards[ele];
-//			list.add(ele);
-////			count++;
-//		}
-	}
-	
-	static int getCountOfCards(int index, boolean[] checked) {
-		int count = 0;	// ÀÌ ÇÔ¼ö¸¦ È£ÃâÇÑ °Í ÀÚÃ¼°¡ Ä«µå¸¦ »ÌÀº °Í ÀÌ¹Ç·Î 
-		int ele = cards[index];
-		int firstIndex = index;
-		boolean isPossible = true;
-		
-		while(ele != firstIndex) {
-			// °°Àº ÇÑ ½ÖÀÇ Ä«µå³ª, ÀÌ¹Ì »Ì¾Ò´ø Ä«µå³ª ¾îÂ÷ÇÇ ½ÃÀÛ index·Î ¿¬°áµÇÁö ¾ÊÀ¸¸é Æ²¸° °Í. 
-			if(checked[ele]) {
-				isPossible = false;
-				break;
-			}
-			checked[ele] = true;
-			ele = cards[ele];
-			count++;
-		}
-		
-		return isPossible ? count : 0;
 	}
 }
