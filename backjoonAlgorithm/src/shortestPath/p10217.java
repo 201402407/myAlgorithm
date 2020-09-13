@@ -36,7 +36,7 @@ public class p10217 {
 				Arrays.fill(moneyDp[i], INF);
 			}
 			
-			
+			// 공항 정보 입력받음 
 			for(int i = 0; i < k; i++) {
 				st = new StringTokenizer(br.readLine());
 				int u = Integer.valueOf(st.nextToken());
@@ -49,11 +49,11 @@ public class p10217 {
 			dijkstra(n, m, 1);	// 다익스트라 가즈아잇
 			
 			int min = INF;
-			for(int i = 0; i <= m; i++) {
+			for(int i = 0; i <= m; i++) { // 가장 최소 시간을 구해보자 
 				min = Math.min(min, moneyDp[n][i]);
 			}
 			
-			if(min == INF) {
+			if(min == INF) { // 도착하지 못했을 때 
 				sb.append("Poor KCM");
 			}
 			else {
@@ -65,6 +65,7 @@ public class p10217 {
 		System.out.println(sb.toString());
 	}
 	
+	// 다익스트라 알고리즘 
 	static void dijkstra(int n, int m, int start) {
 		PriorityQueue<Airport> pq = new PriorityQueue<Airport>();
 		pq.offer(new Airport(start, 0, 0));
@@ -76,7 +77,7 @@ public class p10217 {
 			int nowMoney = airport.money;
 			int nowTime = airport.time;
 			
-			if(nowAirport == n) {
+			if(nowAirport == n) { // 최단 시간에 목적지 도착. 
 				break;
 			}
 			
