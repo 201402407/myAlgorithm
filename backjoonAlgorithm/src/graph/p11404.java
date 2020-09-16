@@ -6,9 +6,9 @@ import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.StringTokenizer;
 
-// ÇÃ·ÎÀÌµå ¾Ë°í¸®Áò »ç¿ë
-// ÇÃ·ÎÀÌµå ¹®Á¦
-// ¸ğµç Á¤Á¡À» Ãâ¹ßÁ¡À¸·Î ÇÏ¿© ¸ğµç Á¤Á¡À» ¸ñÀûÁö·Î ÇßÀ» ¶§ÀÇ ÃÖ´Ü°æ·Î¸¦ ±¸ÇÏ´Â ¾Ë°í¸®Áò
+// í”Œë¡œì´ë“œ ì•Œê³ ë¦¬ì¦˜ ì‚¬ìš©
+// í”Œë¡œì´ë“œ ë¬¸ì œ
+// ëª¨ë“  ì •ì ì„ ì¶œë°œì ìœ¼ë¡œ í•˜ì—¬ ëª¨ë“  ì •ì ì„ ëª©ì ì§€ë¡œ í–ˆì„ ë•Œì˜ ìµœë‹¨ê²½ë¡œë¥¼ êµ¬í•˜ëŠ” ì•Œê³ ë¦¬ì¦˜
 public class p11404 {
 	static int[][] map;
 	static final int MAX_VALUE = 10000001;
@@ -20,7 +20,7 @@ public class p11404 {
 			int n = Integer.valueOf(st.nextToken());
 			st = new StringTokenizer(br.readLine());
 			int m = Integer.valueOf(st.nextToken());
-			map = new int[n][n];	// ÀÌÁ¦ ¸ğµç ÀÎµ¦½º¿¡¼­ -1 ÇØÁÖ±â
+			map = new int[n][n];	// ì´ì œ ëª¨ë“  ì¸ë±ìŠ¤ì—ì„œ -1 í•´ì£¼ê¸°
 
 			for(int i = 0; i < n; i++) {
 				Arrays.fill(map[i], MAX_VALUE);	
@@ -29,8 +29,8 @@ public class p11404 {
 			
 			for(int i = 0; i < m; i++) {
 				st = new StringTokenizer(br.readLine());
-				int start = Integer.valueOf(st.nextToken()) - 1;	// 0ºÎÅÍ ½ÃÀÛ
-				int end = Integer.valueOf(st.nextToken()) - 1;	// 0ºÎÅÍ ½ÃÀÛ
+				int start = Integer.valueOf(st.nextToken()) - 1;	// 0ë¶€í„° ì‹œì‘
+				int end = Integer.valueOf(st.nextToken()) - 1;	// 0ë¶€í„° ì‹œì‘
 				int weight = Integer.valueOf(st.nextToken());
 				if(map[start][end] > weight) {
 					map[start][end] = weight;	
@@ -60,14 +60,14 @@ public class p11404 {
 		}
 	}
 	
-	// ÇÃ·ÎÀÌµå ¾Ë°í¸®Áò
+	// í”Œë¡œì´ë“œ ì•Œê³ ë¦¬ì¦˜
 	public static void floyd(int n) {
-		for(int k = 0; k < n; k++) { // Ãâ¹ß ÁöÁ¡ 
-			for(int i = 0; i < n; i++) { // °æÀ¯ ÁöÁ¡
+		for(int k = 0; k < n; k++) { // ê²½ìœ  ì§€ì  
+			for(int i = 0; i < n; i++) { // ì¶œë°œ ì§€ì 
 				if(k == i) {
 					continue;
 				}
-				for(int j = 0; j < n; j++) { // µµÂø ÁöÁ¡ 
+				for(int j = 0; j < n; j++) { // ë„ì°© ì§€ì  
 					if(i != j && i != j) {
 						if(map[i][j] > map[i][k] + map[k][j]) {
 							map[i][j] = map[i][k] + map[k][j];
