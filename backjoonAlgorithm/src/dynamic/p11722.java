@@ -4,15 +4,13 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.InputMismatchException;
 
-// 가장 긴 증가하는 부분 수열 2
-// LIS + 이분탐색 
-public class p12015 {
-	public static void main(String args[]) throws NumberFormatException, IOException {
+// 가장 긴 감소하는 부분수열 
+public class p11722 {
+	public static void main(String args[]) {
 		InputReader in = new InputReader(System.in);
 		int n = in.readInt();
-		int[] arr = new int[n];
 		
-        // 입력 받아서 배열에 저장하기 
+		int[] arr = new int[n];
 		for(int i = 0; i < n; i++) {
 			arr[i] = in.readInt();
 		}
@@ -20,13 +18,13 @@ public class p12015 {
 		System.out.println(binarySearch(arr, n));
 	}
 	
-	// 이분탐색 알고리즘 
+	// 이분탐색 알고리즘 (내림차순이라 차라리 반대로 순회)
 	public static int binarySearch(int[] arr, int size) {
 		int[] dp = new int[size + 1];	// 가장 긴 증가하는 부분 수열. 가장 뒤에 있는 값은 부분 수열 중 가장 최댓값 
 		int dpLen = 0;
-		dp[dpLen++] = arr[0];
+		dp[dpLen++] = arr[size - 1];
 		
-		for(int i = 1; i < size; i++) {
+		for(int i = size - 2; i >= 0; i--) {
 			if(dp[dpLen - 1] < arr[i]) {	// 가장 긴 증가하는 부분순열의 최댓값보다 큰 경우 뒤에 삽입 
 				dp[dpLen++] = arr[i];
 			}
@@ -53,6 +51,37 @@ public class p12015 {
 		
 		return dpLen;
 	}
+	
+//	private static int binarySearch(int[] arr, int size) {
+//		int[] window = new int[size];	// 내림차순 이어야 함! 감소하는 부분 수열 이므로 
+//		int windowSize = 0;
+//		window[windowSize++] = arr[0];
+//		
+//		for(int i = 1; i < size; i++) {
+//			if(arr[i] < window[windowSize - 1]) {
+//				window[windowSize++] = arr[i];
+//			}
+//			else {
+//				int start = 0;
+//				int end = windowSize;
+//				
+//				while(start <= end) {
+//					int mid = (start + end) / 2;
+//					
+//					if(window[mid] < arr[i]) {	
+//						end = mid - 1;
+//					}
+//					else {
+//						start = mid + 1;
+//					}
+//				}
+//				
+//				window[start] = arr[i];
+//			}
+//		}
+//		
+//		return windowSize;
+//	}
 	
 	// INPUT 속도 증가
 	private static class InputReader {
