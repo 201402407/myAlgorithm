@@ -1,4 +1,4 @@
-package anything;
+package dynamic;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -8,17 +8,12 @@ import java.util.InputMismatchException;
 // LIS + 이분탐색 
 public class p12015 {
 	public static void main(String args[]) throws NumberFormatException, IOException {
-//		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		InputReader in = new InputReader(System.in);
 		int n = in.readInt();
-//		int n = Integer.valueOf(br.readLine());
 		int[] arr = new int[n];
-        // 처음 값 설정 
-//		StringTokenizer st = new StringTokenizer(br.readLine());
 		
         // 입력 받자마자 계산하기
 		for(int i = 0; i < n; i++) {
-//			int ele = Integer.valueOf(st.nextToken());
 			arr[i] = in.readInt();
 		}
 		
