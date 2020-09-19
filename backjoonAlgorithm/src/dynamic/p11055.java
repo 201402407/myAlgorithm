@@ -11,29 +11,19 @@ public class p11055 {
 		InputReader in = new InputReader(System.in);
 		int n = in.readInt();
 		int[] arr = new int[n];
-//		int[][] dp = new int[n][2];	// 0: 0 ~ i 인덱스까지의 수 중 가장 합이 큰 부분수열의 최댓값.  1: 0 ~ i 인덱스까지의 수 중 가장 합이 큰 부분수열의 전체합 
 		int[] dpp = new int[n];
 		int max = 0;
+		
 		for(int i = 0; i < n; i++) {
 			int ele = in.readInt();
 			arr[i] = ele;
-//			dp[i][0] = arr[i];
-//			dp[i][1] = arr[i];
 			dpp[i] = arr[i];
-			boolean isPossible = false;
 			for(int j = i - 1; j >= 0; j--) {
-//				if(dp[j][0] < arr[i] && dp) {
-//					dp[i][0] = arr[i];
-//					dp[i][1] = dp[j][1] + arr[i];
-//					isPossible = true;
-//					break;
-//				}
-				
 				if(arr[j] < arr[i] && dpp[i] < dpp[j] + arr[i]) {
 					dpp[i] = dpp[j] + arr[i];
 				}
 			}
-//			max = Math.max(max, dp[i][1]);
+			
 			max = Math.max(max, dpp[i]);
 		}
 		
