@@ -59,13 +59,13 @@ public class p4195 {
 		System.out.println(sb.toString());
 	}
 	
-	// ë² ìŠ¤íŠ¸ ì •ë‹µ.
-	// ì´ˆê¸° ëª¨ë“  ë…¸ë“œ ê°’ì„ -1ë¡œ ì„¤ì •
-	// ë¶€ëª¨ ë…¸ë“œëŠ” ìŒìˆ˜ë¡œì„œ ìžì‹ë…¸ë“œë“¤ì˜ í¬ê¸°ë¥¼ ë‹´ê³  ìžˆê³ , ìžì‹ ë…¸ë“œë“¤ì€ ë¶€ëª¨ ë…¸ë“œì˜ ì¸ë±ìŠ¤ë¥¼ ê°€ì§€ê³  ìžˆìŒ
-	// ë‘˜ ë‹¤ ë¶€ëª¨ ë…¸ë“œì¼ ê²½ìš° ê°’ ë¹„êµë¥¼ í†µí•´ ì ˆëŒ“ê°’ì´ ìž‘ì€ ë¶€ëª¨ ë…¸ë“œë¥¼ í° ë¶€ëª¨ ë…¸ë“œì— ì´ì–´ë¶™ì¸ë‹¤.
-	// êµ³ì´ ìžì‹ ë…¸ë“œë“¤ ì „ë¶€ ë³€ê²½í•˜ì§€ ì•Šê³  ë¶€ëª¨ ë…¸ë“œë§Œ í•œ ë²ˆ ë°”ê¿”ë†“ìœ¼ë©´ ì–´ì°¨í”¼ find í•¨ìˆ˜ë¥¼ í†µí•´ ìµœìƒë‹¨ ë¶€ëª¨ ë…¸ë“œë¥¼ ì°¾ì„ ìˆ˜ ìžˆìŒ
-	// ê·¸ëž˜ì„œ í¬ê¸° ê³„ì‚°ê¹Œì§€ ê°€ëŠ¥í•˜ê²Œ ë¨
-	// ê·¸ì € ê°“.
+	// º£½ºÆ® Á¤´ä.
+	// ÃÊ±â ¸ðµç ³ëµå °ªÀ» -1·Î ¼³Á¤
+	// ºÎ¸ð ³ëµå´Â À½¼ö·Î¼­ ÀÚ½Ä³ëµåµéÀÇ Å©±â¸¦ ´ã°í ÀÖ°í, ÀÚ½Ä ³ëµåµéÀº ºÎ¸ð ³ëµåÀÇ ÀÎµ¦½º¸¦ °¡Áö°í ÀÖÀ½
+	// µÑ ´Ù ºÎ¸ð ³ëµåÀÏ °æ¿ì °ª ºñ±³¸¦ ÅëÇØ Àý´ñ°ªÀÌ ÀÛÀº ºÎ¸ð ³ëµå¸¦ Å« ºÎ¸ð ³ëµå¿¡ ÀÌ¾îºÙÀÎ´Ù.
+	// ±»ÀÌ ÀÚ½Ä ³ëµåµé ÀüºÎ º¯°æÇÏÁö ¾Ê°í ºÎ¸ð ³ëµå¸¸ ÇÑ ¹ø ¹Ù²ã³õÀ¸¸é ¾îÂ÷ÇÇ find ÇÔ¼ö¸¦ ÅëÇØ ÃÖ»ó´Ü ºÎ¸ð ³ëµå¸¦ Ã£À» ¼ö ÀÖÀ½
+	// ±×·¡¼­ Å©±â °è»ê±îÁö °¡´ÉÇÏ°Ô µÊ
+	// ±×Àú °«.
 	private static int merge(int aIndex, int bIndex) {
 		aIndex = find(aIndex);
 		bIndex = find(bIndex);
@@ -84,16 +84,16 @@ public class p4195 {
 		return disjointSet[aIndex] < 0 ? disjointSet[aIndex] : disjointSet[bIndex];
 	}
 	
-	// ë¶€ëª¨ ë…¸ë“œ í•©ì¹˜ê¸°
-	// í•˜ë‚˜ì˜ ë…¸ë“œê°€ ì‹ ê·œ ë…¸ë“œë¼ê³ í•´ë„ ì •ìƒ ì§„í–‰ ê°€ëŠ¥í•˜ë‹¤.
+	// ºÎ¸ð ³ëµå ÇÕÄ¡±â
+	// ÇÏ³ªÀÇ ³ëµå°¡ ½Å±Ô ³ëµå¶ó°íÇØµµ Á¤»ó ÁøÇà °¡´ÉÇÏ´Ù.
 //	static int union(int aIndex, int bIndex) {
 //		aIndex = find(aIndex);
 //		bIndex = find(bIndex);
 //		int size = 0;
 //		
 //		if(aIndex != bIndex) {
-//			// ëª¨ë“  bIndexì— í•´ë‹¹í•˜ëŠ” ë…¸ë“œì˜ ë¶€ëª¨ ë…¸ë“œ ë³€ê²½
-//			// ê°¯ìˆ˜ ì„¸ê¸°
+//			// ¸ðµç bIndex¿¡ ÇØ´çÇÏ´Â ³ëµåÀÇ ºÎ¸ð ³ëµå º¯°æ
+//			// °¹¼ö ¼¼±â
 //			for(int i = 1; i < disjointSet.length; i++) {
 //				int parentIndex = disjointSet[i];
 //				if(parentIndex == 0) {
@@ -113,7 +113,7 @@ public class p4195 {
 //			}
 //		}
 //		else {
-//			// ê°¯ìˆ˜ ì„¸ê¸°
+//			// °¹¼ö ¼¼±â
 //			for(int i = 1; i < disjointSet.length; i++) {
 //				int parentIndex = disjointSet[i];
 //				
@@ -130,20 +130,20 @@ public class p4195 {
 //		return size;
 //	}
 	
-	// ë£¨íŠ¸ ë…¸ë“œë¥¼ ì°¾ëŠ” í•¨ìˆ˜
+	// ·çÆ® ³ëµå¸¦ Ã£´Â ÇÔ¼ö
 	static int find(int index) {
-//		if(disjointSet[index] == index) {	// ë¶€ëª¨ ë…¸ë“œì˜ ê°’ì´ ê°œìˆ˜(ìŒìˆ˜)ì´ê¸° ë•Œë¬¸ì— ì´ ì½”ë“œëŠ” ì‚¬ìš©í•  ìˆ˜ ì—†ìŒ
+//		if(disjointSet[index] == index) {	// ºÎ¸ð ³ëµåÀÇ °ªÀÌ °³¼ö(À½¼ö)ÀÌ±â ¶§¹®¿¡ ÀÌ ÄÚµå´Â »ç¿ëÇÒ ¼ö ¾øÀ½
 //			return index;
 //		}
 		
-		if(disjointSet[index] < 0) {	// ë¶€ëª¨ ë…¸ë“œì˜ ê°’ì´ ê°œìˆ˜(ìŒìˆ˜)ì´ê¸° ë•Œë¬¸ì— ì´ ì½”ë“œëŠ” ì‚¬ìš©í•  ìˆ˜ ì—†ìŒ
+		if(disjointSet[index] < 0) {	// ºÎ¸ð ³ëµåÀÇ °ªÀÌ °³¼ö(À½¼ö)ÀÌ±â ¶§¹®¿¡ ÀÌ ÄÚµå´Â »ç¿ëÇÒ ¼ö ¾øÀ½
 			return index;
 		}
 		return disjointSet[index] = find(disjointSet[index]);
 	}
 	
 	
-//	// í˜„ìž¬ ì´ë¦„ì´ ì´ë¯¸ ë“¤ì–´ì™€ìžˆëŠ”ì§€ ì²´í¬
+//	// ÇöÀç ÀÌ¸§ÀÌ ÀÌ¹Ì µé¾î¿ÍÀÖ´ÂÁö Ã¼Å©
 //	static int[] getIndicesOfName(String a, String b) {
 //		int[] result = new int[2];
 //		Arrays.fill(result, -1);
