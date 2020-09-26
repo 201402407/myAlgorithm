@@ -4,18 +4,17 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
-import java.util.Iterator;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
-import java.util.TreeSet;
 
 // BFS + 투포인터 
 // 집배원 한상덕 
 public class p2842 {
 	static char[][] map;
 	static int[][] pirodoMap;
-	static int[] pirodoArr;
+	static Integer[] pirodoArr;
 	static int[] moveX = { 0, 1, 1, 1, 0, -1, -1, -1 };	// 시계 방향 
 	static int[] moveY = { -1, -1, 0, 1, 1, 1, 0, -1 };
 	static int pX, pY, n, myPirodo;
@@ -44,7 +43,7 @@ public class p2842 {
 		}
 		
 		// 피로도 입력받음 
-		TreeSet<Integer> pirodo = new TreeSet<Integer>();
+		HashSet<Integer> pirodo = new HashSet<Integer>();
 		StringTokenizer st;
 		for(int i = 0; i < n; i++) {
 			st = new StringTokenizer(br.readLine());
@@ -57,28 +56,26 @@ public class p2842 {
 		
 		// 2차원 피로도 배열 -> 1차원 중복없는 피로도 배열(HashSet 사용)
 		int index = 0;
-		pirodoArr = new int[pirodo.size()];
-		Iterator<Integer> it = pirodo.iterator();
-		while(it.hasNext()) {
-			pirodoArr[index++] = it.next();
-		}
+		pirodoArr = pirodo.toArray(new Integer[pirodo.size()]);
 		
 		// 오름차순 정렬
-		Arrays.parallelSort(pirodoArr);
+		Arrays.sort(pirodoArr);
 		
 		bfs(pirodo.size());
 		System.out.println(myPirodo);
 	}
 	
 	private static void bfs(int pirodoLen) {
+		Queue<SangDuk> queue = new LinkedList<SangDuk>();
+		boolean[][] visited = new boolean[n][n];	// 방문자 체크
 		SangDuk start = new SangDuk(pX, pY);	// 시작점  
 		int startPointer = 0;
 		int endPointer = 0;
 		
 		// 투포인터 시작 
 		while(startPointer <= endPointer && endPointer < pirodoLen) {
-			Queue<SangDuk> queue = new LinkedList<SangDuk>();
-			boolean[][] visited = new boolean[n][n];	// 방문자 체크
+			queue.clear();
+
 			boolean isFinish = false;
 			int kCount = 0;
 			// 투 포인터의 시작지점 ~ 끝지점 범위 내에 시작 피로도값이 포함되어야 한다. 그래야 시작점에서 출발할 수 있는 투포인터 부분배열 이라는 거.
