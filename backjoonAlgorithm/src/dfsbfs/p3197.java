@@ -63,15 +63,6 @@ public class p3197 {
 		
 		melt();	// 얼음 녹일 수 있는 시간 맵에 작성
 		System.out.println(meetBaekjo());
-		
-//		checkMeltCount(baekjo1.x, baekjo1.y, 0);
-//		// 백조끼리 만날 수 있는지 체크 
-////		while(!possibleMeetBaekjo()) {
-////			melt();
-////			count++;
-////		}
-//		
-//		System.out.println(getCountOfMeetBaekjo());
 	}
 	
 	static int meetBaekjo() {
@@ -107,23 +98,6 @@ public class p3197 {
 				else {
 					pq.offer(new Point3197(nextX, nextY, nowP.count));
 				}
-//				if(nowP.count == 0) {
-//					// 시작하자마자 얼음으로 간 적 없이 물에서 물로만 이동하는 경우 
-//					if(countMap[nextY][nextX] == 0) {
-//						pq.offer(new Point3197(nextX, nextY, 0));
-//					}
-//					else {	// 물 -> 얼음 으로 넘어가는 경우 
-//						pq.offer(new Point3197(nextX, nextY, 1));
-//					}
-//				}
-//				else {
-//					if(countMap[nextY][nextX] > nowP.count) {
-//						pq.offer(new Point3197(nextX, nextY, countMap[nextY][nextX]));
-//					}
-//					else {
-//						pq.offer(new Point3197(nextX, nextY, nowP.count));
-//					}
-//				}
 			}
 		}
 		
