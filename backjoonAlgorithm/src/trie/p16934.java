@@ -103,7 +103,7 @@ class Trie16934 {
 			}
 		}
 	
-		if(index != -1) {
+		if(index != -1) {	// 같은 접두사가 없는 경우 맨 끝 노드 count 1로 설정 
 			tempNode.setCount(1);
 		}
 		else {
@@ -113,7 +113,7 @@ class Trie16934 {
 		return index;
 	}
 
-	// 같은 것이 존재할 때, 개수 가져오기 
+	// 같은 단어가 존재할 때, 같은 단어의 개수 가져오기 
 	public int getSameCount(String word) {
 		TrieNode16934 tempNode = this.rootTemp;
 		
