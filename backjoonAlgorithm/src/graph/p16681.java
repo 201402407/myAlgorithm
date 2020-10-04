@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.PriorityQueue;
 
 // 등산
-// 그래프 문제(다익스트라?) 
+// 그래프 문제(다익스트라) 
 public class p16681 {
 	static int n, m, d, e;
 	static long[] heightArr;
@@ -183,3 +183,4 @@ class Vertex16681 implements Comparable<Vertex16681> {
 		}
 	}
 }
+
