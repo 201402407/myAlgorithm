@@ -13,6 +13,9 @@ public class p15559 {
 	static int[][] mapLevel;	// 같은 마을끼리 같은 레벨 
 	static int count, result;
 	static Point15559 startPoint;
+	// 상-좌-하-우 
+	static int[] moveX = {0, 1, 0, -1};
+	static int[] moveY = {-1, 0, 1, 0};
 	
 	public static void main(String args[]) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -38,20 +41,14 @@ public class p15559 {
 			}
 		}
 		
-//		for(int i = 0; i < n; i++) {
-//			for(int j = 0; j < m; j++) {
-//				System.out.print(mapLevel[i][j] + " ");
-//			}
-//			System.out.println();
-//		}
-		
 		System.out.println(result);
 		
 	}
 	
 	// DFS 알고리즘 
 	static void dfs(Point15559 nowPoint) {
-		Point15559 nextPoint = getMovePoint(nowPoint.x, nowPoint.y);
+		int direction = getMovePoint(nowPoint.x, nowPoint.y);
+		Point15559 nextPoint = new Point15559(nowPoint.x + moveX[direction], nowPoint.y + moveY[direction]);
 		if(mapLevel[nextPoint.y][nextPoint.x] == 0) {
 			mapLevel[nextPoint.y][nextPoint.x] = count;
 			dfs(nextPoint);
@@ -60,22 +57,22 @@ public class p15559 {
 			result++;
 		}
 	}
-	
+
 	// 해당 지점의 방향을 보고 다음 지점의 포인트 객체 리턴 
-	static Point15559 getMovePoint(int x, int y) {
+	static int getMovePoint(int x, int y) {
 		char direction = map[y][x];
 		switch(direction) {
 		case 'N':
-			return new Point15559(x, y - 1);
+			return 0;
 		case 'E':
-			return new Point15559(x + 1, y);
+			return 1;
 		case 'S':
-			return new Point15559(x, y + 1);
+			return 2;
 		case 'W':
-			return new Point15559(x - 1, y);
+			return 3;
 		}
 		
-		return null;
+		return -1;
 	}
 }
 
