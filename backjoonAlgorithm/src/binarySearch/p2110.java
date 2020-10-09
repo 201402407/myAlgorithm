@@ -1,4 +1,4 @@
-package dynamic;
+package binarySearch;
 
 import java.io.IOException;
 import java.io.InputStream;
