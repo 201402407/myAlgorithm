@@ -48,18 +48,16 @@ public class p1890 {
 			return true;
 		}
 		
-		// 이동 불가능 
+        // 이동 불가능 
 		if(map[y][x] == 0) {
 			return false;
 		}
-		
+        
 		boolean result = false;
 		// 이동이동 
 		for(int i = 0; i < moveX.length; i++) {
 			int nextX = moveX[i] == 0 ? x : x + map[y][x];
 			int nextY = moveY[i] == 0 ? y : y + map[y][x];
-//			int nextX = x + (moveX[i] * map[y][x]);
-//			int nextY = y + (moveY[i] * map[y][x]);
 			
 			// 범위 체크 
 			if(nextX < 1 || nextX > n || nextY < 1 || nextY > n) {
