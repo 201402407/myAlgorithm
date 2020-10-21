@@ -36,10 +36,6 @@ public class p1082 {
 		int maxLen = getMaxNumberLength();
 		if(minIndex != 0) {	// 최소 비용의 숫자가 0이 아니면
 			buyBigNumber(maxLen, money, false);
-//			while(maxLen --> 0) {
-//				
-//				sb.append(minIndex);
-//			}
 		}
 		else {	// 최소 비용의 숫자가 0이면 
 			buyBigNumber(maxLen, money, true);
@@ -84,7 +80,7 @@ public class p1082 {
 				}
 			}
 			
-			// 하나의 최소 숫자를 팔았을 때, 아무것도 살 수 없다면 하나의 최소 숫자를 더 팔아서 다른 숫자를 사는게아니라 판 것을 다시 사서 만드는게 가장 큰 숫자가 된다.
+			// 하나의 최소 숫자를 팔았을 때, 아무것도 살 수 없다면 하나의 최소 숫자를 더 팔아서 다른 숫자를 사는게 아니라 판 것을 다시 사서 만드는게 가장 큰 숫자가 된다.
 			if(!getNumber) {
 				if(isZero) {	// 만약 전부 0인 상태에서 아무것도 살 수 없다면 하나 더 팔아서라도 다른 숫자를 사야한다.	
 					continue;
