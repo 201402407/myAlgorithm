@@ -8,7 +8,6 @@ import java.util.StringTokenizer;
 // DFS + DP 
 // 게임 문제 
 public class p1103 {
-//	static final int CYCLE = Integer.MAX_VALUE;
 	static int n, m, max; // n : 세로, m : 가로 
 	static boolean isCycle = false;
 	static int[][] dp; 
@@ -78,16 +77,11 @@ public class p1103 {
 				isCycle = true;
 				return;
 			}
-						
-			// DFS를 통해 게임 최대 회수 구하기
-//			int dfsResult = checkMoveSquare ? dfs(nextX, nextY, moveCount + 1, prevMoveSquareCount, serialMoveSquareCount) 
-//					: dfs(nextX, nextY, moveCount + 1, moveSquareCount, 0);
 
 			visited[nextY][nextX] = true;
 			dfs(nextX, nextY, moveCount + 1);
 			visited[nextY][nextX] = false;
 			
-//			dp[y][x] = Math.max(dp[y][x], dfsResult);
 		}
 	}
 }
