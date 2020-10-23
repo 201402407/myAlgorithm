@@ -31,6 +31,7 @@ public class p2917 {
 		dp = new int[n][m];
 		map = new char[n][m];
 		
+		// 입력받기 
 		for(int i = 0; i < n; i++) {
 			Arrays.fill(dp[i], Integer.MAX_VALUE);
 			String line = br.readLine();
@@ -68,7 +69,7 @@ public class p2917 {
 					continue;
 				}
 				
-				// 횟수가 크면 통과
+				// 현재까지 계산한 거리가 저장되어 있는 거리보다 크면 통과
 				if(distance < dp[nextY][nextX]) {
 					dp[nextY][nextX] = distance;
 					trees.offer(new Point2917(nextX, nextY, distance));
@@ -105,7 +106,7 @@ public class p2917 {
 			dp[nextY][nextX] = distance;
 			calculateTreeMoving(nextX, nextY, distance);
 		}
-	}	
+	}
 	
 	// 시작 지점과 종료 지점 좌표는 이미 static으로 저장해놨으므로 별도 파라미터 투입 X 
 	static void dijkstra() {
@@ -131,7 +132,8 @@ public class p2917 {
 					continue;
 				}
 				
-				if(visited[nextY][nextX]) {	// 이미 방문했으면 패스 
+				// 이미 방문했으면 패스 
+				if(visited[nextY][nextX]) {	
 					continue;
 				}
 				
@@ -146,7 +148,7 @@ public class p2917 {
 	}
 }
 
-class Point2917 implements Comparable<Point2917>{
+class Point2917 implements Comparable<Point2917> {
 	int x;
 	int y;
 	int minCount;
