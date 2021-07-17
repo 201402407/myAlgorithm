@@ -9,6 +9,8 @@ import java.util.StringTokenizer;
 // 카드 합체 놀이
 // 그리디 알고리즘
 public class p15903 {
+	static long[] cards;
+	
 	public static void main(String args[]) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine());
@@ -17,7 +19,7 @@ public class p15903 {
 		int m = Integer.valueOf(st.nextToken());
 		
 		st = new StringTokenizer(br.readLine());
-		long[] cards = new long[n];
+		cards = new long[n];
 		for(int i = 0; i < n; i++) {
 			cards[i] = Long.valueOf(st.nextToken());
 		}
@@ -40,12 +42,8 @@ public class p15903 {
 			// 삽입 정렬로 인덱스 1부터 시작
 			// 1 삽입 정렬 후 인덱스 0 시작
 			
-			for(int i = 2; i < n; i++) {
-				if(sum <= cards[i]) {
-					
-				}
-			}
-			
+			setInsertionSort(1);
+			setInsertionSort(0);
 		}
 		
 		long result = 0;
@@ -54,5 +52,19 @@ public class p15903 {
 		}
 		
 		System.out.println(result);
+	}
+	
+	private static void setInsertionSort(int startIndex) {
+		for(int i = startIndex + 1; i < cards.length; i++) {
+			long card = cards[i - 1];
+			long nextCard = cards[i];
+			if(card <= nextCard) {
+				break;
+			}
+			
+			// swap
+			cards[i - 1] = nextCard;
+			cards[i] = card;
+		}
 	}
 }
