@@ -1,0 +1,58 @@
+package greedy;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Arrays;
+import java.util.StringTokenizer;
+
+// 카드 합체 놀이
+// 그리디 알고리즘
+public class p15903 {
+	public static void main(String args[]) throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer st = new StringTokenizer(br.readLine());
+		
+		int n = Integer.valueOf(st.nextToken());
+		int m = Integer.valueOf(st.nextToken());
+		
+		st = new StringTokenizer(br.readLine());
+		long[] cards = new long[n];
+		for(int i = 0; i < n; i++) {
+			cards[i] = Long.valueOf(st.nextToken());
+		}
+		
+		// 1. 오름차순 정렬
+		Arrays.sort(cards);
+		
+		// m회 반복
+		while(m --> 0) {
+			// 2. 카드 두 장 더하기
+			long a = cards[0];
+			long b = cards[1];
+			long sum = a + b;
+			
+			// 3. 대입
+			cards[0] = sum;
+			cards[1] = sum;
+			
+			// 4. 카드 두장 정렬
+			// 삽입 정렬로 인덱스 1부터 시작
+			// 1 삽입 정렬 후 인덱스 0 시작
+			
+			for(int i = 2; i < n; i++) {
+				if(sum <= cards[i]) {
+					
+				}
+			}
+			
+		}
+		
+		long result = 0;
+		for(long card: cards) {
+			result += card;
+		}
+		
+		System.out.println(result);
+	}
+}
