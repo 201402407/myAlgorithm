@@ -29,6 +29,7 @@ public class p1484 {
 		// 최소 1Kg 이상 나가는걸로
 //		end^2 = G + start^2
 		
+		// 임시 저장
 		// 초기 제곱값 선언
 		powArr = new int[MAX + 1];
 		for(int i = 1; i <= MAX; i++) {
