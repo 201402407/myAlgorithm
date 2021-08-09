@@ -12,7 +12,7 @@ import java.util.List;
 public class p1484 {
 	static int g;
 	static final int MAX = 100000;
-	static int[] powArr;
+	static long[] powArr;
 	public static void main(String args[]) throws NumberFormatException, IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		g = Integer.valueOf(br.readLine());
@@ -31,7 +31,7 @@ public class p1484 {
 		
 		// 임시 저장
 		// 초기 제곱값 선언
-		powArr = new int[MAX + 1];
+		powArr = new long[MAX + 1];
 		for(int i = 1; i <= MAX; i++) {
 			powArr[i] = i * i;
 		}
@@ -41,7 +41,7 @@ public class p1484 {
 		List<Integer> result = new ArrayList<Integer>();
 		
 		while(end <= MAX) {
-			int weight = powArr[end] - powArr[start];
+			long weight = powArr[end] - powArr[start];
 			if(weight == g) {
 				result.add(end);
 			}

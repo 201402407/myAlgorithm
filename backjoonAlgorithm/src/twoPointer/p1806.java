@@ -50,9 +50,6 @@ public class p1806 {
 			if(start > end) {
 				break;
 			}
-//			if(end == n && maxSum < s) {
-//				break;
-//			}
 			if(end == n - 1) {
 				break;
 			}
@@ -61,8 +58,5 @@ public class p1806 {
 		}
 		
 		System.out.println(minLen == Integer.MAX_VALUE ? 0 : minLen);
-		
-//		2. while문 시작(end가 N끝까지 올 때까지)
-//		while(end )
 	}
 }
