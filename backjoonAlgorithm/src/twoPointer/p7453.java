@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.StringTokenizer;
 
@@ -16,6 +17,7 @@ import java.util.StringTokenizer;
 public class p7453 {
 	static int n;
 	static int[] a, b, c, d;
+	static HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
 	public static void main(String args[]) throws NumberFormatException, IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		n = Integer.valueOf(br.readLine());
@@ -45,73 +47,14 @@ public class p7453 {
 		
 		int result = 0;
 		
-		System.out.println("____________________________");
-		Arrays.sort(a);
-		for(int ele : a) {
-			System.out.print(ele + " ");
-		}
-		System.out.println();
-		System.out.println("____________________________");
-		System.out.println("____________________________");
-		Arrays.sort(b);
-		for(int ele : b) {
-			System.out.print(ele + " ");
-		}
-		System.out.println();
-		System.out.println("____________________________");
-		System.out.println("____________________________");
-		Arrays.sort(c);
-		for(int ele : c) {
-			System.out.print(ele + " ");
-		}
-		System.out.println();
-		System.out.println("____________________________");
-		System.out.println("____________________________");
-		Arrays.sort(d);
-		for(int ele : d) {
-			System.out.print(ele + " ");
-		}
-		System.out.println();
-		System.out.println("____________________________");
 		// AB / CD
 		List<Integer> abList = new ArrayList<Integer>();
 		pushSumInSet(abList, a, b);
 		Collections.sort(abList);
-		System.out.println("======================");
-		for(int ele : abList) {
-			System.out.print(ele + " ");
-		}
-		System.out.println();
-		System.out.println("======================");
 		List<Integer> cdList = new ArrayList<Integer>();
 		pushSumInSet(cdList, c, d);
 		Collections.sort(cdList);
-		System.out.println("======================");
-		for(int ele : cdList) {
-			System.out.print(ele + " ");
-		}
-		System.out.println();
-		System.out.println("======================");
 		result += searchZero(abList, cdList);
-		System.out.println("------------------------");
-		// AC / BD
-		List<Integer> acList = new ArrayList<Integer>();
-		pushSumInSet(acList, a, c);
-		Collections.sort(acList);
-		List<Integer> bdList = new ArrayList<Integer>();
-		pushSumInSet(bdList, b, d);
-		Collections.sort(bdList);
-		result += searchZero(acList, bdList);
-		System.out.println("------------------------");
-		// AD / BC
-		List<Integer> adList = new ArrayList<Integer>();
-		pushSumInSet(adList, a, d);
-		Collections.sort(adList);
-		List<Integer> bcList = new ArrayList<Integer>();
-		pushSumInSet(bcList, b, c);
-		Collections.sort(bcList);
-		result += searchZero(adList, bcList);
-		System.out.println("------------------------");
 		System.out.println(result);
 	}
 	
@@ -120,38 +63,60 @@ public class p7453 {
 		
 		// 이분탐색?
 		for(int i = 0; i < x.size(); i++) {
-			int xValue = x.get(i);
-			if(binarySearch(y, -1 * xValue)) {	// 정확히 부호만 다른 절댓값이 다른 배열안에 있어야 합이 0이 된다.
-				System.out.println("x : " + xValue);
-				count++;
+			int xValue = -1 * x.get(i);
+			int result = 0;
+			if(map.containsKey(xValue)) {
+				result = map.get(xValue);
 			}
+			else {
+				result = binarySearch(y, xValue);
+			}
+			
+			count += result;
 		}
 		
 		return count;
 	}
 	
 	// value에 해당하는 값이 x에 있는지 이분탐색
-	static boolean binarySearch(List<Integer> x, int value) {
-		int start = 0;
-		int end = x.size() - 1;
-		
-		while(start <= end) {
-			int mid = (start + end) / 2;
-			int midValue = x.get(mid);
+	static int binarySearch(List<Integer> x, int value) {
+		// 깊은복사
+		List<Integer> temp = new ArrayList<Integer>();
+		temp.addAll(x);
+		int count = 0;
+		boolean valid = false;
+		while(!valid) {
+			int start = 0;
+			int end = temp.size() - 1;
 			
-			if(midValue < value) {
-				start = mid + 1;
+			while(start <= end) {
+				int mid = (start + end) / 2;
+				int midValue = temp.get(mid);
+				
+				if(midValue < value) {
+					start = mid + 1;
+				}
+				else if(midValue == value) {
+					temp.remove(mid);
+					count++;
+					valid = true;
+					break;
+				}
+				else {
+					end = mid - 1;
+				}
 			}
-			else if(midValue == value) {
-				System.out.print("y-mid : " + mid + ",, ");
-				return true;
+			
+			if(valid) {
+				valid = false;
 			}
 			else {
-				end = mid - 1;
+				break;
 			}
 		}
 		
-		return false;
+		map.put(value, count);
+		return count;
 	}
 	
 	static void pushSumInSet(List<Integer> list, int[] temp, int[] temp2) {
