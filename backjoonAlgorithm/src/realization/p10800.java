@@ -26,53 +26,47 @@ public class p10800 {
 			st = new StringTokenizer(br.readLine());
 			int color = Integer.valueOf(st.nextToken());
 			int size = Integer.valueOf(st.nextToken());
-			bolls[i] = new Boll(color, size);
+			bolls[i] = new Boll(i, color, size);
 		}
 		
-		Boll[] sortedBolls = bolls.clone();	// 깊은복사
-		Arrays.sort(sortedBolls);	// 오름차순 정렬
+		Arrays.sort(bolls);	// 오름차순 정렬
+		int[] resultBollSize = new int[n];
+		int[] sizeOfBollColor = new int[n + 1];
 		
+		int sum = 0;
 		// for문 순회
 		StringBuilder sb = new StringBuilder();
-		for(Boll boll : bolls) {
-			// 이분탐색
-			int index = binarySearch(sortedBolls, boll.size);
-			int sizeSum = 0;
-			for(int i = index; i >= 0; i--) {
-				if(sortedBolls[i].color != boll.color) {
-					sizeSum += sortedBolls[i].size;
-				}
+		for(int i = 0, j = 0; i < n; i++) {
+			Boll nextBoll = bolls[i];
+			Boll prvBoll = bolls[j];
+			
+			while(prvBoll.size < nextBoll.size) {	// 사이즈가 다를 때만 공을 사로잡은
+				sum += prvBoll.size;
+				sizeOfBollColor[prvBoll.color] += prvBoll.size;
+				
+				prvBoll = bolls[++j];
 			}
 			
-			sb.append(sizeSum).append("\n");
+			// 공 사로잡기 로직은 위에서 처리
+			// 누적합
+			resultBollSize[nextBoll.index] = sum - sizeOfBollColor[nextBoll.color];
+		}
+		
+		for(int ele : resultBollSize) {
+			sb.append(ele).append("\n");
 		}
 		
 		System.out.println(sb.toString());
 	}
-	
-	static int binarySearch(Boll[] sortedBolls, int size) {
-		int start = 0;
-		int end = sortedBolls.length - 1;
-		
-		while(start <= end) {
-			int mid = (start + end) / 2;
-			if(sortedBolls[mid].size < size) {
-				start = mid + 1;
-			}
-			else {
-				end = mid - 1;
-			}
-		}
-		
-		return start;
-	}
 }
 
 class Boll implements Comparable<Boll> {
+	int index;
 	int color;
 	int size;
 	
-	Boll(int color, int size) {
+	Boll(int index, int color, int size) {
+		this.index = index;
 		this.color = color;
 		this.size = size;
 	}
@@ -81,6 +75,9 @@ class Boll implements Comparable<Boll> {
 	public int compareTo(Boll b) {
 		if(this.size < b.size) {
 			return -1;
+		}
+		else if(this.size == b.size) {
+			return 0;
 		}
 		else {
 			return 1;
