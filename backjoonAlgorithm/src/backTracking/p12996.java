@@ -27,10 +27,10 @@ public class p12996 {
 			return;
 		}
 		
-		for(int i = 0; i <= n; i++) {
-			for(int j = 0; j <= a; j++) {
-				for(int k = 0; k <= b; k++) {
-					Arrays.fill(dp[i][j][k], -1);	// -1로 초기화하지 않으면 사용여부를 세밀하게 파악할 수 없다
+		for(long ele[][][] : dp) {
+			for(long ele2[][] : ele) {
+				for(long ele3[] : ele2) {
+					Arrays.fill(ele3, -1);	// -1로 초기화하지 않으면 사용여부를 세밀하게 파악할 수 없다
 				}
 			}
 		}
@@ -53,11 +53,6 @@ public class p12996 {
 		
 		if(dp[n][a][b][c] > -1) {
 			return dp[n][a][b][c];
-		}
-		
-		if(n > (a + b + c)) {
-			dp[n][a][b][c] = 0;
-			return 0;
 		}
 		
 		long count = 0;
