@@ -43,8 +43,10 @@ public class p18430 {
 		int x = index % m;
 		int y = index / m;
 		
+		// 아무 부메랑도 안만드는 경우
+		backTracking(index + 1, intensity, visited);
+		
 		if(visited[y][x]) {
-			backTracking(index + 1, intensity, visited);
 			return;
 		}
 		
@@ -109,9 +111,6 @@ public class p18430 {
 			visited[nextY2][nextX2] = false;
 			visited[nextY3][nextX3] = false;
 		}
-		
-		// 아무 부메랑도 안만드는 경우
-		backTracking(index + 1, intensity, visited);
 	}
 	
 	
